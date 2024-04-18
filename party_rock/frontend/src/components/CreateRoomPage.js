@@ -59,12 +59,14 @@ const CreateRoomPage = () => {
             row
             defaultValue="true"
             onChange={handleGuestCanPauseChange}
+            align="center"
+            
           >
             <FormControlLabel
               value="true"
               control={<Radio color="primary" />}
               label="Play/Pause"
-              labelPlacement="bottom"
+              labelPlacement="bottom"              
             />
             <FormControlLabel
               value="false"

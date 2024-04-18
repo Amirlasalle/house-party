@@ -1,18 +1,20 @@
-import React, { Component } from "react";
-import { useParams } from "react-router-dom"; // Import useParams hook
+import React, { useEffect, useState } from "react"; 
+import { useNavigate, useParams } from "react-router-dom";
+import { Grid, Button, Typography } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Room() {
-  const { roomCode } = useParams(); // Use useParams hook to access route parameters
-
-  const [roomDetails, setRoomDetails] = React.useState({
+  const { roomCode } = useParams();
+  const navigate = useNavigate();
+  const [roomDetails, setRoomDetails] = useState({
     votesToSkip: 2,
     guestCanPause: false,
     isHost: false,
   });
 
-  React.useEffect(() => {
+  useEffect(() => { 
     getRoomDetails(roomCode);
-  }, [roomCode]); 
+  }, [roomCode]);
 
   const getRoomDetails = (code) => {
     fetch("/api/get-room?code=" + code)
@@ -25,16 +27,51 @@ export default function Room() {
         });
       })
       .catch((error) => {
-        console.error('Error fetching room details:', error);
+        console.error("Error fetching room details:", error);
+      });
+  };
+
+  const leaveButtonPressed = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/api/leave-room", requestOptions)
+      .then((_response) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error leaving room:", error);
       });
   };
 
   return (
-    <div>
-      <h3>{roomCode}</h3>
-      <p>Votes: {roomDetails.votesToSkip}</p>
-      <p>Guest Can Pause: {roomDetails.guestCanPause.toString()}</p>
-      <p>Host: {roomDetails.isHost.toString()}</p>
-    </div>
+    <Grid container spacing={1}>
+      <Grid item xs={12} align="center">
+        <Typography variant="h5" component="h5">
+          Room Code: {roomCode}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="p" component="p">
+          Votes: {roomDetails.votesToSkip}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="p" component="p">
+          Guest Can Pause: {roomDetails.guestCanPause.toString()}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="p" component="p">
+          Host: {roomDetails.isHost.toString()}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Button variant="contained" color="secondary" onClick={leaveButtonPressed}>
+          Leave Room <LogoutIcon />
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
