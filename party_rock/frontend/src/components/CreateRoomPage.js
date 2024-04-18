@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -11,53 +11,37 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const CreateRoomPage = () => {
+  const navigate = useNavigate();
 
-  // const [guestCanPause, setGuestCanPause] = useState(true);
-  // const [votesToSkip, setVotesToSkip] = useState(1);
-const [guestCanPause, setGuestCanPause] = useState(true);
-const [voteToSkip, setVotesToSkip] = useState(1);
+  const [guestCanPause, setGuestCanPause] = useState(true);
+  const [votesToSkip, setVotesToSkip] = useState(1);
 
-const handleVotsChange = (e) => {
-  setVotesToSkip(e.target.value);
-}
+  const handleVotesChange = (e) => {
+    setVotesToSkip(e.target.value);
+  };
 
-const handleGuestCanPauseChange = (e) => {
-  setGuestCanPause(e.target.vaule === "true");
-};
+  const handleGuestCanPauseChange = (e) => {
+    setGuestCanPause(e.target.value === "true");
+  };
 
-
-  // const handleRoomButtonPressed = () => {
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       votes_to_skip: votesToSkip,
-  //       guest_can_pause: guestCanPause,
-  //     }),
-  //   };
-  //   fetch("/api/create-room", requestOptions)
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data));
-  // };
-
-
-  const handleRoomButoonPressed = () => {
+  const handleRoomButtonPressed = () => {
     const requestOptions = {
       method: "POST",
-      Headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        vote_tp_skip: voteToSkip,
+        votes_to_skip: votesToSkip,
         guest_can_pause: guestCanPause,
       }),
     };
-    fetch("/api/create-room", requestOptions)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-  };
 
+    fetch("/api/create-room", requestOptions)
+      .then((response) => response.json())
+      .then((data) => navigate("/room/" + data.code))
+      .catch((error) => console.error("Error creating room:", error));
+  };
 
   return (
     <Grid container spacing={1}>
