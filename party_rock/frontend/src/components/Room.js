@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Grid, Button, Typography } from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
-import SettingsIcon from '@mui/icons-material/Settings';
-import CloseIcon from '@mui/icons-material/Close';
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
 import CreateRoomPage from "./CreateRoomPage";
 
 const Room = ({ leaveRoomCallback }) => {
@@ -11,14 +11,16 @@ const Room = ({ leaveRoomCallback }) => {
     votesToSkip: 2,
     guestCanPause: false,
     isHost: false,
-    spotifyAuthenticated: false
+    spotifyAuthenticated: false,
   });
   const [showSettings, setShowSettings] = useState(false);
   const { roomCode } = useParams();
   const navigate = useNavigate();
+  const [song, setSong] = useState(null);
 
   useEffect(() => {
     getRoomDetails();
+    getCurrentSong();
   }, []);
 
   const getRoomDetails = () => {
@@ -43,20 +45,40 @@ const Room = ({ leaveRoomCallback }) => {
   };
 
   const authenticateSpotify = () => {
-    fetch('/spotify/is-authenticated').then((response) => response.json()).then((data) => {
-      setRoomDetails((prevState) => ({
-        ...prevState,
-        spotifyAuthenticated: data.status
-      })); 
-      console.log(data.status);
-      if (!data.status) {
-        fetch('/spotify/get-auth-url')
-        .then((response) => response.json()).then((data) => {
-          window.location.replace(data.url);
-        });
-      }
-    });
-  }
+    fetch("/spotify/is-authenticated")
+      .then((response) => response.json())
+      .then((data) => {
+        setRoomDetails((prevState) => ({
+          ...prevState,
+          spotifyAuthenticated: data.status,
+        }));
+        console.log(data.status);
+        if (!data.status) {
+          fetch("/spotify/get-auth-url")
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.replace(data.url);
+            });
+        }
+      });
+  };
+
+  const getCurrentSong = () => {
+    fetch("/spotify/current-song")
+      .then((response) => {
+        if (!response.ok) {
+          return {};
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setSong(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching current song:", error);
+      });
+  };
 
   const leaveButtonPressed = () => {
     const requestOptions = {
@@ -123,7 +145,31 @@ const Room = ({ leaveRoomCallback }) => {
           Code: {roomCode}
         </Typography>
       </Grid>
+      {song && (
+        <Grid item xs={12} align="center">
+          <Typography variant="h6">
+            {`Title: ${song.title}, Artist: ${song.artist}`}
+          </Typography>
+        </Grid>
+      )}
+      {roomDetails.isHost ? renderSettingsButton() : null}
       <Grid item xs={12} align="center">
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={leaveButtonPressed}
+        >
+          <LogoutIcon />
+        </Button>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Room;
+
+{
+  /* <Grid item xs={12} align="center">
         <Typography variant="h6" component="h6">
           Votes: {roomDetails.votesToSkip}
         </Typography>
@@ -137,19 +183,5 @@ const Room = ({ leaveRoomCallback }) => {
         <Typography variant="h6" component="h6">
           Host: {roomDetails.isHost.toString()}
         </Typography>
-      </Grid>
-      {roomDetails.isHost ? renderSettingsButton() : null}
-      <Grid item xs={12} align="center">
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={leaveButtonPressed}
-        >
-         <LogoutIcon />
-        </Button>
-      </Grid>
-    </Grid>
-  );
-};
-
-export default Room;
+      </Grid> */
+}
