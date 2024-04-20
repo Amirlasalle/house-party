@@ -12,16 +12,19 @@ const Room = ({ leaveRoomCallback }) => {
     guestCanPause: false,
     isHost: false,
     spotifyAuthenticated: false,
+    song: {},
   });
   const [showSettings, setShowSettings] = useState(false);
   const { roomCode } = useParams();
   const navigate = useNavigate();
   const [song, setSong] = useState(null);
 
-  useEffect(() => {
-    getRoomDetails();
-    getCurrentSong();
-  }, []);
+  // useEffect(() => {
+  //   getRoomDetails();
+  //   getCurrentSong();
+  //   const interval = setInterval(getCurrentSong, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const getRoomDetails = () => {
     fetch("/api/get-room" + "?code=" + roomCode)
@@ -74,11 +77,18 @@ const Room = ({ leaveRoomCallback }) => {
       })
       .then((data) => {
         setSong(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching current song:", error);
       });
   };
+
+  useEffect(() => {
+    getRoomDetails();
+    const interval = setInterval(getCurrentSong, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const leaveButtonPressed = () => {
     const requestOptions = {
