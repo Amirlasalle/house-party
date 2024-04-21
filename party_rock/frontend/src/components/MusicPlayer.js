@@ -33,13 +33,30 @@ const MusicPlayer = (props) => {
     fetch("/spotify/play", requestOptions);
   };
 
+  const prevSong = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/spotify/prev", requestOptions);
+  };
+
+  const skipSong = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/spotify/skip", requestOptions);
+  };
+
+
 
 
   const handleClick = () => {
     setIsClicked(true);
     setTimeout(() => {
       setIsClicked(false);
-    }, 500);
+    }, 100);
   };
 
   const handleClickShrink = () => {
@@ -80,7 +97,9 @@ const MusicPlayer = (props) => {
             {props.artist}
           </Typography>
           <div className="my-2">
-            <IconButton>
+            <IconButton
+            onClick={() => prevSong()}
+            >
               <SkipPreviousRoundedIcon
                 className="text-default hover-text-white"
                 fontSize="large"
@@ -88,7 +107,7 @@ const MusicPlayer = (props) => {
             </IconButton>
             <IconButton
               className={`bg-white mx-2 rounded-full ${
-                isClicked ? "" : "hover-grow"
+                isClicked ? "hover-shrink" : "hover-grow"
               }`}
               onClick={() => {
                 props.is_playing
@@ -106,7 +125,9 @@ const MusicPlayer = (props) => {
                 <PlayArrowRoundedIcon className="text-black" />
               )}
             </IconButton>
-            <IconButton>
+            <IconButton 
+            onClick={() => skipSong()}
+            >
               <SkipNextRoundedIcon
                 className="text-default hover-text-white "
                 fontSize="large"
