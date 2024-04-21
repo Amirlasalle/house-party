@@ -33,19 +33,19 @@ function HomePage() {
     return (
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
-          <Typography variant="h3" compact="h3">
+          <Typography variant="h3" compact="h3" className="font-bold">
             House Party
           </Typography>
         </Grid>
         <Grid item xs={12} align="center">
-          <ButtonGroup disableElevation variant="contained" color="primary">
-            <Button color="primary" to="/join" component={Link}>
+        
+            <Button  to="/join" component={Link} className="bg-link mx-1 rounded-lg text-white hover-bright-lg ">
               Join a Room
             </Button>
-            <Button color="secondary" to="/create" component={Link} >
+            <Button  to="/create" component={Link} className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg">
               Create a Room
             </Button>
-          </ButtonGroup>
+         
         </Grid>
       </Grid>
     );

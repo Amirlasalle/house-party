@@ -9,13 +9,20 @@ import {
   FormHelperText,
   FormControlLabel,
   Radio,
-  RadioGroup, Collapse,
+  RadioGroup,
+  Collapse,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import UpgradeIcon from '@mui/icons-material/Upgrade';
+import UpgradeIcon from "@mui/icons-material/Upgrade";
 
-const CreateRoomPage = ({ votesToSkip: initialVotesToSkip = 2, guestCanPause: initialGuestCanPause = true, update = false, roomCode = null, updateCallback = () => {} }) => {
+const CreateRoomPage = ({
+  votesToSkip: initialVotesToSkip = 2,
+  guestCanPause: initialGuestCanPause = true,
+  update = false,
+  roomCode = null,
+  updateCallback = () => {},
+}) => {
   const [guestCanPause, setGuestCanPause] = useState(initialGuestCanPause);
   const [votesToSkip, setVotesToSkip] = useState(initialVotesToSkip);
   const [errorMsg, setErrorMsg] = useState("");
@@ -72,7 +79,7 @@ const CreateRoomPage = ({ votesToSkip: initialVotesToSkip = 2, guestCanPause: in
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Button
-            color="primary"
+            className="bg-link mx-1 rounded-lg text-white hover-bright-lg "
             variant="contained"
             onClick={handleRoomButtonPressed}
           >
@@ -80,8 +87,13 @@ const CreateRoomPage = ({ votesToSkip: initialVotesToSkip = 2, guestCanPause: in
           </Button>
         </Grid>
         <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" component={Link}>
-          <ArrowBackIcon /> Back
+          <Button
+            className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg"
+            variant="contained"
+            to="/"
+            component={Link}
+          >
+            <ArrowBackIcon /> Back
           </Button>
         </Grid>
       </Grid>
@@ -92,7 +104,7 @@ const CreateRoomPage = ({ votesToSkip: initialVotesToSkip = 2, guestCanPause: in
     return (
       <Grid item xs={12} align="center">
         <Button
-          color="primary"
+         className="bg-link mx-1 rounded-lg text-white hover-bright-lg "
           variant="contained"
           onClick={handleUpdateButtonPressed}
         >

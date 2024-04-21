@@ -9,7 +9,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="center">
+      <div className="center poppins-regular p-5 ">
         <HomePage />
       </div>
     );

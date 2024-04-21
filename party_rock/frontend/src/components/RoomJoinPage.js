@@ -38,7 +38,7 @@ const RoomJoinPage = () => {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} align="center">
-        <Typography variant="h4" component="h4">
+        <Typography variant="h4" component="h4" className="font-bold">
           Join A Room
         </Typography>
       </Grid>
@@ -54,13 +54,13 @@ const RoomJoinPage = () => {
         />
       </Grid>
       <Grid item xs={12} align="center">
-        <Button variant="contained" color="primary" onClick={roomButtonPressed} >
+        <Button variant="contained" className="bg-link mx-1 rounded-lg text-white hover-bright-lg" onClick={roomButtonPressed} >
          Join  {" "}
           <LoginIcon />{" "}
         </Button>
       </Grid>
       <Grid item xs={12} align="center">
-      <Button variant="contained" color="secondary" to="/" component={Link}>
+      <Button variant="contained" className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg" to="/" component={Link}>
           {" "}
           <ArrowBackIcon /> {" "} Back
         </Button>

@@ -5,6 +5,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
 import CreateRoomPage from "./CreateRoomPage";
+import MusicPlayer from "./MusicPlayer";
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -19,12 +20,7 @@ const Room = ({ leaveRoomCallback }) => {
   const navigate = useNavigate();
   const [song, setSong] = useState(null);
 
-  // useEffect(() => {
-  //   getRoomDetails();
-  //   getCurrentSong();
-  //   const interval = setInterval(getCurrentSong, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  
 
   const getRoomDetails = () => {
     fetch("/api/get-room" + "?code=" + roomCode)
@@ -120,7 +116,7 @@ const Room = ({ leaveRoomCallback }) => {
         <Grid item xs={12} align="center">
           <Button
             variant="contained"
-            color="secondary"
+            className="bg-danger mx-1 rounded-lg text-white hover-bright-lg "
             onClick={() => updateShowSettings(false)}
           >
             <CloseIcon />
@@ -134,11 +130,10 @@ const Room = ({ leaveRoomCallback }) => {
     return (
       <Grid item xs={12} align="center">
         <Button
-          variant="contained"
-          color="primary"
+          className="bg-spotify-green btn-circle hover-bright-lg "
           onClick={() => updateShowSettings(true)}
         >
-          <SettingsIcon />
+          <SettingsIcon className="text-default"/>
         </Button>
       </Grid>
     );
@@ -151,22 +146,17 @@ const Room = ({ leaveRoomCallback }) => {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} align="center">
-        <Typography variant="h4" component="h4">
-          Code: {roomCode}
+        <Typography variant="h5" component="h5" className="font-semibold">
+          Room Code: {roomCode}
         </Typography>
       </Grid>
-      {song && (
-        <Grid item xs={12} align="center">
-          <Typography variant="h6">
-            {`Title: ${song.title}, Artist: ${song.artist}`}
-          </Typography>
-        </Grid>
-      )}
+     
+      <MusicPlayer {...song} />
       {roomDetails.isHost ? renderSettingsButton() : null}
       <Grid item xs={12} align="center">
         <Button
           variant="contained"
-          color="secondary"
+          className="bg-danger rounded-lg text-white hover-bright-lg "
           onClick={leaveButtonPressed}
         >
           <LogoutIcon />
@@ -177,21 +167,3 @@ const Room = ({ leaveRoomCallback }) => {
 };
 
 export default Room;
-
-{
-  /* <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
-          Votes: {roomDetails.votesToSkip}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
-          Guest Can Pause: {roomDetails.guestCanPause.toString()}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
-          Host: {roomDetails.isHost.toString()}
-        </Typography>
-      </Grid> */
-}
