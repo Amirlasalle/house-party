@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Collapse,
 } from "@mui/material";
+import { pink, white } from "@mui/material/colors";
 import Alert from "@mui/material/Alert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
@@ -76,10 +77,15 @@ const CreateRoomPage = ({
 
   const renderCreateButtons = () => {
     return (
-      <Grid container spacing={1}>
+      <Grid
+        container
+        spacing={3}
+        alignItems="center"
+        className="flex flex-col items-center justify-center bg-dark rounded-lg pr-4 "
+      >
         <Grid item xs={12} align="center">
           <Button
-            className="bg-link mx-1 rounded-lg text-white hover-bright-lg "
+            className="bg-spotify-green mx-1 rounded-lg text-white hover-bright-lg "
             variant="contained"
             onClick={handleRoomButtonPressed}
           >
@@ -102,9 +108,14 @@ const CreateRoomPage = ({
 
   const renderUpdateButtons = () => {
     return (
-      <Grid item xs={12} align="center">
+      <Grid
+        item
+        xs={12}
+        align="center"
+        className="flex flex-col items-center justify-center mr-4 bg-dark"
+      >
         <Button
-         className="bg-link mx-1 rounded-lg text-white hover-bright-lg "
+          className="bg-spotify-green mx-1 rounded-lg text-white hover-bright-lg "
           variant="contained"
           onClick={handleUpdateButtonPressed}
         >
@@ -117,7 +128,12 @@ const CreateRoomPage = ({
   const title = update ? "Update Room" : "Create a Room";
 
   return (
-    <Grid container spacing={1}>
+    <Grid
+      container
+      spacing={3}
+      alignItems="center"
+      className="flex flex-col items-center justify-center bg-dark rounded-lg pr-4 "
+    >
       <Grid item xs={12} align="center">
         <Collapse in={errorMsg !== "" || successMsg !== ""}>
           {successMsg !== "" ? (
@@ -142,31 +158,56 @@ const CreateRoomPage = ({
         </Collapse>
       </Grid>
       <Grid item xs={12} align="center">
-        <Typography component="h4" variant="h4">
+        <Typography component="h4" variant="h4" className="text-white">
           {title}
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
-        <FormControl component="fieldset">
-          <FormHelperText>
-            <div align="center">Guest Control of Playback State</div>
+        <FormControl align="center" component="fieldset">
+          <FormHelperText align="center">
+            <div align="center" className="text-default">
+              Guest Control of Playback State
+            </div>
           </FormHelperText>
           <RadioGroup
             row
             value={guestCanPause.toString()}
             onChange={handleGuestCanPauseChange}
+            align="center"
           >
             <FormControlLabel
               value="true"
-              control={<Radio color="primary" />}
+              control={
+                <Radio
+                  sx={{
+                    color: "#1ed760",
+                    "&.Mui-checked": {
+                      color: "#1ed760",
+                    },
+                  }}
+                  className=" p-0 my-2"
+                />
+              }
               label="Play/Pause"
               labelPlacement="bottom"
+              className="text-white"
             />
             <FormControlLabel
               value="false"
-              control={<Radio color="secondary" />}
+              control={
+                <Radio
+                  sx={{
+                    color: "#1ed760",
+                    "&.Mui-checked": {
+                      color: "#1ed760",
+                    },
+                  }}
+                  className=" p-0 my-2"
+                />
+              }
               label="No Control"
               labelPlacement="bottom"
+              className="text-white"
             />
           </RadioGroup>
         </FormControl>
@@ -174,21 +215,31 @@ const CreateRoomPage = ({
       <Grid item xs={12} align="center">
         <FormControl>
           <TextField
+            color="success"
+            focused
+            margin="dense"
             required={true}
             type="number"
             onChange={handleVotesChange}
             defaultValue={votesToSkip}
             inputProps={{
               min: 1,
-              style: { textAlign: "center" },
+              style: { textAlign: "center", color:"white" },
             }}
           />
-          <FormHelperText>
-            <div align="center">Votes Required To Skip Song</div>
+          <FormHelperText align="center" className="text-default">
+            Votes Required To Skip Song
           </FormHelperText>
         </FormControl>
       </Grid>
-      {update ? renderUpdateButtons() : renderCreateButtons()}
+      <Grid
+        item
+        xs={12}
+        align="center"
+        className="flex flex-col items-center justify-center bg-dark rounded-lg ml-4 "
+      >
+        {update ? renderUpdateButtons() : renderCreateButtons()}
+      </Grid>
     </Grid>
   );
 };

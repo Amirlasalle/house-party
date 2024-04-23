@@ -49,9 +49,6 @@ const MusicPlayer = (props) => {
     fetch("/spotify/skip", requestOptions);
   };
 
-
-
-
   const handleClick = () => {
     setIsClicked(true);
     setTimeout(() => {
@@ -68,6 +65,12 @@ const MusicPlayer = (props) => {
   };
 
   return (
+    <> 
+    <div className="w-100 flex items-center justify-center">
+    <Typography variant="p" component="p" className="text-default items-center justify-center font-light smaller">
+      Votes to skip: {props.votes} / {props.votes_required}
+    </Typography>
+  </div>
     <Card className="my-2 bg-dark rounded-lg">
       <Grid
         container
@@ -97,9 +100,7 @@ const MusicPlayer = (props) => {
             {props.artist}
           </Typography>
           <div className="my-2">
-            <IconButton
-            onClick={() => prevSong()}
-            >
+            <IconButton onClick={() => prevSong()}>
               <SkipPreviousRoundedIcon
                 className="text-default hover-text-white"
                 fontSize="large"
@@ -125,9 +126,7 @@ const MusicPlayer = (props) => {
                 <PlayArrowRoundedIcon className="text-black" />
               )}
             </IconButton>
-            <IconButton 
-            onClick={() => skipSong()}
-            >
+            <IconButton onClick={() => skipSong()}>
               <SkipNextRoundedIcon
                 className="text-default hover-text-white "
                 fontSize="large"
@@ -136,8 +135,9 @@ const MusicPlayer = (props) => {
           </div>
         </Grid>
       </Grid>
-      <LinearProgress variant="determinate" value={songProgress} />
+      <LinearProgress variant="determinate" color="secondary" value={songProgress} />
     </Card>
+    </>
   );
 };
 

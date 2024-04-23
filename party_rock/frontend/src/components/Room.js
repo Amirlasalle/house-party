@@ -20,8 +20,6 @@ const Room = ({ leaveRoomCallback }) => {
   const navigate = useNavigate();
   const [song, setSong] = useState(null);
 
-  
-
   const getRoomDetails = () => {
     fetch("/api/get-room" + "?code=" + roomCode)
       .then((response) => {
@@ -103,7 +101,11 @@ const Room = ({ leaveRoomCallback }) => {
 
   const renderSettings = () => {
     return (
-      <Grid container spacing={1}>
+      <Grid container
+      spacing={3}
+      alignItems="center"
+      className="flex flex-col items-center justify-center bg-dark rounded-lg pb-2"
+    >
         <Grid item xs={12} align="center">
           <CreateRoomPage
             update={true}
@@ -116,7 +118,7 @@ const Room = ({ leaveRoomCallback }) => {
         <Grid item xs={12} align="center">
           <Button
             variant="contained"
-            className="bg-danger mx-1 rounded-lg text-white hover-bright-lg "
+            className="flex justify-center items-center bg-danger rounded-lg ml-0 mr-2 text-white hover-bright-lg "
             onClick={() => updateShowSettings(false)}
           >
             <CloseIcon />
@@ -133,7 +135,7 @@ const Room = ({ leaveRoomCallback }) => {
           className="bg-spotify-green btn-circle hover-bright-lg "
           onClick={() => updateShowSettings(true)}
         >
-          <SettingsIcon className="text-default"/>
+          <SettingsIcon className="text-white" />
         </Button>
       </Grid>
     );
@@ -144,24 +146,28 @@ const Room = ({ leaveRoomCallback }) => {
   }
 
   return (
-    <Grid container spacing={1}>
-      <Grid item xs={12} align="center">
-        <Typography variant="h5" component="h5" className="font-semibold">
+    <Grid container spacing={1} className="mt-5 flex justify-center items-center">
+      <Grid item xs={12} align="center" className="my-2">
+        <Typography variant="h5" component="h5" className="font-semibold my-2 text-white">
           Room Code: {roomCode}
         </Typography>
       </Grid>
-     
       <MusicPlayer {...song} />
+
+      <div className="mt-5 bg-dark  flex flex-col justify-center items-center rounded-lg w-100  pb-5 pt-5">
+      <Grid item xs={12} align="center" className="mb-5">
       {roomDetails.isHost ? renderSettingsButton() : null}
+      </Grid>
       <Grid item xs={12} align="center">
         <Button
           variant="contained"
           className="bg-danger rounded-lg text-white hover-bright-lg "
           onClick={leaveButtonPressed}
-        >
+          >
           <LogoutIcon />
         </Button>
       </Grid>
+          </div>
     </Grid>
   );
 };
