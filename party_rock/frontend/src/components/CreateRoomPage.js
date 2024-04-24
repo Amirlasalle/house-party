@@ -12,7 +12,7 @@ import {
   RadioGroup,
   Collapse,
 } from "@mui/material";
-import { pink, white } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from "@mui/material/Alert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
@@ -74,7 +74,13 @@ const CreateRoomPage = ({
       })
       .catch((error) => setErrorMsg("Error updating room..."));
   };
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#1ed760', 
+      },
+    },
+  });
   const renderCreateButtons = () => {
     return (
       <Grid
@@ -212,10 +218,11 @@ const CreateRoomPage = ({
           </RadioGroup>
         </FormControl>
       </Grid>
+      <ThemeProvider theme={theme}>
       <Grid item xs={12} align="center">
         <FormControl>
           <TextField
-            color="success"
+            color="primary"
             focused
             margin="dense"
             required={true}
@@ -232,6 +239,7 @@ const CreateRoomPage = ({
           </FormHelperText>
         </FormControl>
       </Grid>
+      </ThemeProvider>
       <Grid
         item
         xs={12}

@@ -33,7 +33,7 @@ function HomePage() {
 
   const renderHomePage = () => {
     return (
-      <Grid container spacing={12}>
+      <Grid container spacing={2} className="bg-dark vw-100  p-10">
         <Grid item xs={12} align="center">
           <Button
             to="/info"
@@ -44,7 +44,7 @@ function HomePage() {
           </Button>
         </Grid>
         <Grid item xs={12} align="center">
-          <Typography variant="h3" compact="h3" className="font-bold">
+          <Typography variant="h3" compact="h3" className="font-bold text-white">
             Party Rock
           </Typography>
         </Grid>

@@ -26,7 +26,7 @@ const Info = (props) => {
   });
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className="mt-5 bg-dark  flex flex-col justify-center items-center rounded-lg w-100  pb-5 pt-5 pr-5 text-white">
       <Grid
         container
         spacing={6}
@@ -60,6 +60,7 @@ const Info = (props) => {
           onClick={() => {
             page === pages.CREATE ? setPage(pages.JOIN) : setPage(pages.CREATE);
           }}
+          className="text-default bg-white"
         >
           {page === pages.CREATE ? (
             <NavigateBeforeIcon />
