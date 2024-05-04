@@ -3173,6 +3173,10 @@ a:hover {
   width: 25%;
 }
 
+.w-auto {
+width: auto !important;
+}
+
 .min-100-vh {
   min-height: 100vh;
 }

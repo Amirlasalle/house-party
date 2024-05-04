@@ -100,7 +100,7 @@ const Room = ({ leaveRoomCallback }) => {
 
   const renderSettings = () => {
     return (
-      <Container fluid className="mt-5 flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100">
+      <Container fluid className="mt-5 flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100 overflow-y-scroll overflow-x-hidden">
         <Row className="justify-content-center align-items-center">
           <Col xs={12} className="my-2">
             <CreateRoomPage
@@ -143,10 +143,11 @@ const Room = ({ leaveRoomCallback }) => {
   }
 
   return (
-    <Container fluid className="flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100"
+    <div className="w-100 inline-flex">
+    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-80-vh w-100  overflow-y-scroll overflow-x-hidden"
     >
-      <Row className="justify-content-center items-center">
-        <div xs={12} className="mt-2 text-center">
+      <Row className="justify-content-center items-center my-2">
+        <div xs={12} className="mt-5 text-center">
           <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -166,6 +167,31 @@ const Room = ({ leaveRoomCallback }) => {
         </div>
       </Row>
     </Container>
+    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-80-vh w-50 overflow-y-scroll overflow-x-hidden"
+       style={{ minWidth: '18rem' }}
+    >
+      <Row className="justify-content-center items-center my-2">
+        <div xs={12} className="mt-5 text-center">
+          <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+          <MusicPlayer {...song} />
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
+            {roomDetails.isHost ? renderSettingsButton() : null}
+            <Button
+              variant="contained"
+              className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
+              onClick={leaveButtonPressed}
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} />
+            </Button>
+          </Col>
+        </div>
+      </Row>
+    </Container>
+    </div>
   );
 };
 

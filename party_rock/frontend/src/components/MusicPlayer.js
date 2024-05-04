@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, ProgressBar, Image } from "react-bootstrap";
+import { Card, ProgressBar, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 
@@ -58,11 +58,11 @@ const MusicPlayer = (props) => {
   return (
     <>
       <div className="w-100 pl-0 d-flex justify-content-center">
-        <p className="text-default pl-0 font-light smaller">
+        <p className="text-default pl-0 my-0 font-light smaller">
           Votes to skip: {props.votes} / {props.votes_required}
         </p>
       </div>
-      <Card className="my-2 bg-spotify-green overflow-hidden rounded-lg"
+      <Card className="my-1 bg-spotify-green overflow-hidden rounded-lg"
        style={{ width: '18rem' }}
       >
         <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-content-center">
@@ -77,7 +77,10 @@ const MusicPlayer = (props) => {
 
         <div className="pl-0 text-center">
           <h6 className="mt-2 pl-0 text-white font-semibold">{props.title}</h6>
-          <p className="small pl-0 text-default">{props.artist}</p>
+          <div className="max-w-100 flex items-center justify-center">
+
+          <p className="w-auto flex items-center justify-center small pl-0 px-6 text-default hover-text-white">{props.artist}</p>
+          </div>
 
           <div className="inline-flex flex-row justify-center items-center my-2">
            
@@ -109,7 +112,7 @@ const MusicPlayer = (props) => {
        
         </div>
        
-       <ProgressBar variant="light"  style={{ height: '2px' }} now={songProgress} />
+       <ProgressBar variant="light"  style={{ height: '2.5px' }} now={songProgress} />
       </Card>
     </>
   );
