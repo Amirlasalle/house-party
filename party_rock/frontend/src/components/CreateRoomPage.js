@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Button,
-  Grid,
-  Typography,
-  TextField,
-  FormControl,
-  FormHelperText,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  Collapse,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Alert from "@mui/material/Alert";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
+import { Button, Form, FormGroup, FormLabel, FormControl, Alert } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUp, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import AnimatedText from "./AnimatedText"
+
 
 const CreateRoomPage = ({
   votesToSkip: initialVotesToSkip = 2,
@@ -74,181 +63,87 @@ const CreateRoomPage = ({
       })
       .catch((error) => setErrorMsg("Error updating room..."));
   };
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#1ed760', 
-      },
-    },
-  });
+
   const renderCreateButtons = () => {
     return (
-      <Grid
-        container
-        spacing={3}
-        alignItems="center"
-        className="flex flex-col items-center justify-center bg-dark rounded-lg pr-4 "
-      >
-        <Grid item xs={12} align="center">
-          <Button
-            className="bg-spotify-green mx-1 rounded-lg text-white hover-bright-lg "
-            variant="contained"
-            onClick={handleRoomButtonPressed}
-          >
-            Create A Room
-          </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg"
-            variant="contained"
-            to="/"
-            component={Link}
-          >
-            <ArrowBackIcon /> Back
-          </Button>
-        </Grid>
-      </Grid>
+      <div className="d-flex flex-column align-items-center justify-content-center bg-dark rounded-lg pr-4">
+        <Button
+          className="bg-spotify-green mx-1 rounded-lg text-white"
+          variant="contained"
+          onClick={handleRoomButtonPressed}
+        >
+          Create A Room
+        </Button>
+        <Button
+          className="bg-danger mx-1 my-2 rounded-lg text-white"
+          variant="contained"
+          to="/"
+          as={Link}
+        >
+         <FontAwesomeIcon icon={faArrowLeft} /> Back
+        </Button>
+      </div>
     );
   };
 
   const renderUpdateButtons = () => {
     return (
-      <Grid
-        item
-        xs={12}
-        align="center"
-        className="flex flex-col items-center justify-center mr-4 bg-dark"
-      >
+      <div className="d-flex flex-column align-items-center justify-content-center bg-dark mr-4">
         <Button
-          className="bg-spotify-green mx-1 rounded-lg text-white hover-bright-lg "
+          className="bg-spotify-green mx-1 rounded-lg text-white"
           variant="contained"
           onClick={handleUpdateButtonPressed}
         >
-          Update Room <UpgradeIcon />
+          Update Room <FontAwesomeIcon icon={faCircleUp} />
         </Button>
-      </Grid>
+      </div>
     );
   };
 
   const title = update ? "Update Room" : "Create a Room";
 
   return (
-    <Grid
-      container
-      spacing={3}
-      alignItems="center"
-      className="flex flex-col items-center justify-center bg-dark rounded-lg pr-4 "
-    >
-      <Grid item xs={12} align="center">
-        <Collapse in={errorMsg !== "" || successMsg !== ""}>
-          {successMsg !== "" ? (
-            <Alert
-              severity="success"
-              onClose={() => {
-                setSuccessMsg("");
-              }}
-            >
-              {successMsg}
-            </Alert>
-          ) : (
-            <Alert
-              severity="error"
-              onClose={() => {
-                setErrorMsg("");
-              }}
-            >
-              {errorMsg}
-            </Alert>
-          )}
-        </Collapse>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Typography component="h4" variant="h4" className="text-white">
-          {title}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <FormControl align="center" component="fieldset">
-          <FormHelperText align="center">
-            <div align="center" className="text-default">
-              Guest Control of Playback State
+    <div className="d-flex flex-column align-items-center justify-content-center bg-dark rounded-lg pr-4">
+      <div>
+        <Alert variant={successMsg !== "" ? "success" : "danger"} onClose={() => setSuccessMsg("")}>
+          {successMsg !== "" ? successMsg : errorMsg}
+        </Alert>
+      </div>
+      <div>
+        <h4 className="text-white">{title}</h4>
+      </div>
+      <div>
+        <Form>
+          <FormGroup>
+            <FormLabel className="text-white">Guest Control of Playback State</FormLabel>
+            <div className="d-flex">
+              <FormControl
+                as="select"
+                className="bg-dark text-white"
+                value={guestCanPause.toString()}
+                onChange={handleGuestCanPauseChange}
+              >
+                <option value="true">Play/Pause</option>
+                <option value="false">No Control</option>
+              </FormControl>
             </div>
-          </FormHelperText>
-          <RadioGroup
-            row
-            value={guestCanPause.toString()}
-            onChange={handleGuestCanPauseChange}
-            align="center"
-          >
-            <FormControlLabel
-              value="true"
-              control={
-                <Radio
-                  sx={{
-                    color: "#1ed760",
-                    "&.Mui-checked": {
-                      color: "#1ed760",
-                    },
-                  }}
-                  className=" p-0 my-2"
-                />
-              }
-              label="Play/Pause"
-              labelPlacement="bottom"
-              className="text-white"
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="text-white">Votes Required To Skip Song</FormLabel>
+            <FormControl
+              type="number"
+              className="bg-dark text-white"
+              value={votesToSkip}
+              onChange={handleVotesChange}
+              min="1"
             />
-            <FormControlLabel
-              value="false"
-              control={
-                <Radio
-                  sx={{
-                    color: "#1ed760",
-                    "&.Mui-checked": {
-                      color: "#1ed760",
-                    },
-                  }}
-                  className=" p-0 my-2"
-                />
-              }
-              label="No Control"
-              labelPlacement="bottom"
-              className="text-white"
-            />
-          </RadioGroup>
-        </FormControl>
-      </Grid>
-      <ThemeProvider theme={theme}>
-      <Grid item xs={12} align="center">
-        <FormControl>
-          <TextField
-            color="primary"
-            focused
-            margin="dense"
-            required={true}
-            type="number"
-            onChange={handleVotesChange}
-            defaultValue={votesToSkip}
-            inputProps={{
-              min: 1,
-              style: { textAlign: "center", color:"white" },
-            }}
-          />
-          <FormHelperText align="center" className="text-default">
-            Votes Required To Skip Song
-          </FormHelperText>
-        </FormControl>
-      </Grid>
-      </ThemeProvider>
-      <Grid
-        item
-        xs={12}
-        align="center"
-        className="flex flex-col items-center justify-center bg-dark rounded-lg ml-4 "
-      >
+          </FormGroup>
+        </Form>
+      </div>
+      <div className="d-flex flex-column align-items-center justify-content-center bg-dark rounded-lg ml-4">
         {update ? renderUpdateButtons() : renderCreateButtons()}
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

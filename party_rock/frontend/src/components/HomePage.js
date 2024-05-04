@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Redirect,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import { Button, Container, Image } from "react-bootstrap";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
-import { Grid, Typography, ButtonGroup, Button } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import Info from "./Info";
+import AnimatedText from "./AnimatedText"
+import homePic from "../images/party-rock-home.png"
+
 
 function HomePage() {
   const [roomCode, setRoomCode] = useState("");
@@ -33,38 +30,36 @@ function HomePage() {
 
   const renderHomePage = () => {
     return (
-      <Grid container spacing={2} className="bg-dark vw-100  p-10">
-        <Grid item xs={12} align="center">
-          <Button
-            to="/info"
-            component={Link}
-            className="bg-link mx-1 text-white btn-circle hover-bright-lg"
-          >
-            <InfoIcon />
+      <Container fluid className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-80-vh w-100">
+        <div className="flex justify-center items-center my-5 h-80-vh w-100">
+          <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
+            <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
           </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Typography variant="h3" compact="h3" className="font-bold text-white">
-            Party Rock
-          </Typography>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            to="/join"
-            component={Link}
-            className="bg-link mx-1 rounded-lg text-white hover-bright-lg "
-          >
+        </div>
+        <div className=" h-80-vh flex items-center justify-center text-center">
+          <AnimatedText
+            text="Welcome To Party Rock"
+            className="text-center "
+          />
+        </div>
+        <div className="flex items-center justify-center text-center">
+                <Image
+                  src={homePic}
+                  alt="Party Rock"
+                  width={200}
+                  height={200}
+                  priority="true"
+                />
+              </div>
+              <div className="w-full flex items-center justify-center text-center hover-underline-none">
+          <Button as={Link} to="/join" variant="white" className="text-dark hover-underline-none mx-1 rounded-lg">
             Join a Room
           </Button>
-          <Button
-            to="/create"
-            component={Link}
-            className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg"
-          >
+          <Button as={Link} to="/create"  className="text-white bg-spotify-green  mx-1 my-2 rounded-lg  hover-underline-none hover-bg-spotify">
             Create a Room
           </Button>
-        </Grid>
-      </Grid>
+        </div>
+      </Container>
     );
   };
 
@@ -74,26 +69,17 @@ function HomePage() {
 
   return (
     <Router>
-      <div id="root" className="flex-column justify-center items-center">
+      <div id="root" className="d-flex justify-content-center align-items-center">
         <Routes>
           <Route
             exact
             path="/"
-            element={
-              roomCode ? (
-                <Navigate to={`/room/${roomCode}`} />
-              ) : (
-                renderHomePage()
-              )
-            }
+            element={roomCode ? <Navigate to={`/room/${roomCode}`} /> : renderHomePage()}
           />
           <Route path="/info" element={<Info />} />
           <Route path="/join" element={<RoomJoinPage />} />
           <Route path="/create" element={<CreateRoomPage />} />
-          <Route
-            path="/room/:roomCode"
-            element={<Room leaveRoomCallback={clearRoomCode} />}
-          />
+          <Route path="/room/:roomCode" element={<Room leaveRoomCallback={clearRoomCode} />} />
         </Routes>
       </div>
     </Router>

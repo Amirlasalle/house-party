@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Grid, Button, Typography } from "@mui/material";
-import LogoutIcon from "@mui/icons-material/Logout";
-import SettingsIcon from "@mui/icons-material/Settings";
-import CloseIcon from "@mui/icons-material/Close";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
 
@@ -101,43 +100,41 @@ const Room = ({ leaveRoomCallback }) => {
 
   const renderSettings = () => {
     return (
-      <Grid container
-      spacing={3}
-      alignItems="center"
-      className="flex flex-col items-center justify-center bg-dark rounded-lg pb-2"
-    >
-        <Grid item xs={12} align="center">
-          <CreateRoomPage
-            update={true}
-            votesToSkip={roomDetails.votesToSkip}
-            guestCanPause={roomDetails.guestCanPause}
-            roomCode={roomCode}
-            updateCallback={getRoomDetails}
-          />
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            variant="contained"
-            className="flex justify-center items-center bg-danger rounded-lg ml-0 mr-2 text-white hover-bright-lg "
-            onClick={() => updateShowSettings(false)}
-          >
-            <CloseIcon />
-          </Button>
-        </Grid>
-      </Grid>
+      <Container fluid className="mt-5 flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100">
+        <Row className="justify-content-center align-items-center">
+          <Col xs={12} className="my-2">
+            <CreateRoomPage
+              update={true}
+              votesToSkip={roomDetails.votesToSkip}
+              guestCanPause={roomDetails.guestCanPause}
+              roomCode={roomCode}
+              updateCallback={getRoomDetails}
+            />
+          </Col>
+          <Col xs={12} className="text-center">
+            <Button
+              variant="contained"
+              className="bg-danger rounded-lg text-white hover-bright-lg"
+              onClick={() => updateShowSettings(false)}
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     );
   };
 
   const renderSettingsButton = () => {
     return (
-      <Grid item xs={12} align="center">
-        <Button
-          className="bg-spotify-green btn-circle hover-bright-lg "
-          onClick={() => updateShowSettings(true)}
-        >
-          <SettingsIcon className="text-white" />
-        </Button>
-      </Grid>
+  
+          <Button
+            className="bg-spotify-green mx-2 btn-circle hover-bright-lg"
+            onClick={() => updateShowSettings(true)}
+          >
+            <FontAwesomeIcon icon={faGear} className="text-white" />
+          </Button>
+      
     );
   };
 
@@ -146,29 +143,29 @@ const Room = ({ leaveRoomCallback }) => {
   }
 
   return (
-    <Grid container spacing={1} className="mt-5 flex justify-center items-center">
-      <Grid item xs={12} align="center" className="my-2">
-        <Typography variant="h5" component="h5" className="font-semibold my-2 text-white">
-          Room Code: {roomCode}
-        </Typography>
-      </Grid>
-      <MusicPlayer {...song} />
-
-      <div className="mt-5 bg-dark  flex flex-col justify-center items-center rounded-lg w-100  pb-5 pt-5">
-      <Grid item xs={12} align="center" className="mb-5">
-      {roomDetails.isHost ? renderSettingsButton() : null}
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Button
-          variant="contained"
-          className="bg-danger rounded-lg text-white hover-bright-lg "
-          onClick={leaveButtonPressed}
-          >
-          <LogoutIcon />
-        </Button>
-      </Grid>
-          </div>
-    </Grid>
+    <Container fluid className="flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100"
+    >
+      <Row className="justify-content-center items-center">
+        <div xs={12} className="mt-2 text-center">
+          <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+          <MusicPlayer {...song} />
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
+            {roomDetails.isHost ? renderSettingsButton() : null}
+            <Button
+              variant="contained"
+              className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
+              onClick={leaveButtonPressed}
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} />
+            </Button>
+          </Col>
+        </div>
+      </Row>
+    </Container>
   );
 };
 

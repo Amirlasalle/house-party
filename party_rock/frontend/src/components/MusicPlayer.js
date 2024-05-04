@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  Card,
-  IconButton,
-  LinearProgress,
-} from "@mui/material";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
-import PauseIcon from "@mui/icons-material/Pause";
-import SkipNextRoundedIcon from "@mui/icons-material/SkipNextRounded";
-import SkipPreviousRoundedIcon from "@mui/icons-material/SkipPreviousRounded";
-import Image from "@mui/icons-material/Image";
+import { Card, Button, ProgressBar, Image } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faPause, faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 
 const MusicPlayer = (props) => {
   const songProgress = (props.time / props.duration) * 100;
@@ -58,62 +49,44 @@ const MusicPlayer = (props) => {
 
   const handleClickShrink = () => {
     if (isClicked) {
-      return { transform: "scale(0.95)" };
+      return { transform: "scale(0.9)" };
     } else {
       return { transform: "scale(1)" };
     }
   };
 
   return (
-    <> 
-    <div className="w-100 flex items-center justify-center">
-    <Typography variant="p" component="p" className="text-default items-center justify-center font-light smaller">
-      Votes to skip: {props.votes} / {props.votes_required}
-    </Typography>
-  </div>
-    <Card className="my-2 bg-dark rounded-lg">
-      <Grid
-        container
-        alignItems="center"
-        className="my-2 bg-dark rounded-lg justify-center"
+    <>
+      <div className="w-100 pl-0 d-flex justify-content-center">
+        <p className="text-default pl-0 font-light smaller">
+          Votes to skip: {props.votes} / {props.votes_required}
+        </p>
+      </div>
+      <Card className="my-2 bg-spotify-green overflow-hidden rounded-lg"
+       style={{ width: '18rem' }}
       >
-        <Grid item align="center" xs={8}>
-          <img
-            align="center"
+        <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-content-center">
+          <Image
             src={props.image_url}
             width="85%"
             height="85%"
             alt={Image}
             className="rounded-lg"
           />
-        </Grid>
+        </div>
 
-        <Grid item xs={8} align="center">
-          <Typography
-            component="h6"
-            variant="h6"
-            className="mt-2 text-white font-semibold"
-          >
-            {`${props.title} `}
-          </Typography>
-          <Typography component="p" variant="p" className="small text-default">
-            {props.artist}
-          </Typography>
-          <div className="my-2">
-            <IconButton onClick={() => prevSong()}>
-              <SkipPreviousRoundedIcon
-                className="text-default hover-text-white"
-                fontSize="large"
-              />
-            </IconButton>
-            <IconButton
-              className={`bg-white mx-2 rounded-full ${
-                isClicked ? "hover-shrink" : "hover-grow"
-              }`}
+        <div className="pl-0 text-center">
+          <h6 className="mt-2 pl-0 text-white font-semibold">{props.title}</h6>
+          <p className="small pl-0 text-default">{props.artist}</p>
+
+          <div className="inline-flex flex-row justify-center items-center my-2">
+           
+            <FontAwesomeIcon onClick={() => prevSong()}   icon={faBackwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" />
+       <div className="flex items-center justify-center">
+            <div
+              className={`mx-5 mt-0 flex justify-center items-center text-white btn-circle bg-white cursor-pointer ${isClicked ? "hover-shrink" : "hover-grow"}`}
               onClick={() => {
-                props.is_playing
-                  ? (pauseSong(), handleClick())
-                  : (playSong(), handleClick());
+                props.is_playing ? (pauseSong(), handleClick()) : (playSong(), handleClick());
               }}
               style={{
                 ...handleClickShrink(),
@@ -121,22 +94,23 @@ const MusicPlayer = (props) => {
               }}
             >
               {props.is_playing ? (
-                <PauseIcon className="text-black" />
+               <FontAwesomeIcon icon={faPause}  className="text-black text-center items-center justify-center" />
               ) : (
-                <PlayArrowRoundedIcon className="text-black" />
+                <FontAwesomeIcon icon={faPlay} className="text-black text-center items-center justify-center" />
               )}
-            </IconButton>
-            <IconButton onClick={() => skipSong()}>
-              <SkipNextRoundedIcon
-                className="text-default hover-text-white "
-                fontSize="large"
-              />
-            </IconButton>
-          </div>
-        </Grid>
-      </Grid>
-      <LinearProgress variant="determinate" color="secondary" value={songProgress} />
-    </Card>
+            </div>
+            </div>
+          
+            <FontAwesomeIcon onClick={() => skipSong()}  icon={faForwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" fontSize="large" />
+          
+            
+          </div> 
+     
+       
+        </div>
+       
+       <ProgressBar variant="light"  style={{ height: '2px' }} now={songProgress} />
+      </Card>
     </>
   );
 };

@@ -1,21 +1,11 @@
 import React, { useState } from "react";
-import { TextField, Button, Grid, Typography } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import LoginIcon from "@mui/icons-material/Login";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightToBracket, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 const RoomJoinPage = () => {
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#1ed760', 
-      },
-    },
-  });
-  
-
   const [roomCode, setRoomCode] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -47,62 +37,45 @@ const RoomJoinPage = () => {
   };
 
   return (
-    <Grid
-      container
-      spacing={3}
-      className="mt-5 bg-dark  flex flex-col justify-center items-center rounded-lg w-100  pb-5 pt-5 pr-5"
-    >
-      <Grid item xs={12} align="center">
-        <Typography
-          variant="h4"
-          component="h4"
-          className="font-bold text-white"
-        >
-          Join A Room
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-      <ThemeProvider theme={theme}>
-        <TextField
-          color="primary"
-          focused
-          margin="dense"
-          error={error}
-          label="Code"
-          placeholder="Enter a Room Code"
-          value={roomCode}
-          helperText={error ? "Room not found" : ""}
-          variant="outlined"
-          onChange={handleTextFieldChange}
-          inputProps={{
-          style: { color: "white" }
-          }}
-    
-        />
-            </ThemeProvider>
-
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Button
-          variant="contained"
-          className="bg-spotify-green mx-1 rounded-lg text-white hover-bright-lg"
-          onClick={roomButtonPressed}
-        >
-          Join <LoginIcon />{" "}
-        </Button>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Button
-          variant="contained"
-          className="bg-danger mx-1 my-2 rounded-lg text-white hover-bright-lg"
-          to="/"
-          component={Link}
-        >
-          {" "}
-          <ArrowBackIcon /> Back
-        </Button>
-      </Grid>
-    </Grid>
+    <Container fluid className="mt-5 flex justify-center items-center text-black">
+      <Row className="justify-content-center align-items-center">
+        <Col xs={12} className="text-center">
+          <h4 className="font-bold text-white">Join A Room</h4>
+        </Col>
+        <Col xs={12} className="text-center">
+          <Form.Control
+            type="text"
+            placeholder="Enter a Room Code"
+            value={roomCode}
+            onChange={handleTextFieldChange}
+            isInvalid={error}
+            style={{ color: "black" }}
+          />
+          {/* <Form.Control.Feedback type="invalid">
+            Room not found
+          </Form.Control.Feedback> */}
+        </Col>
+        <Col xs={12} className="text-center">
+          <Button
+            variant="success"
+            className="mx-1 rounded-lg text-white hover-bright-lg"
+            onClick={roomButtonPressed}
+          >
+            Join <FontAwesomeIcon icon={faRightToBracket} fade />
+          </Button>
+        </Col>
+        <Col xs={12} className="text-center">
+          <Button
+            variant="danger"
+            className="mx-1 my-2 rounded-lg text-white hover-bright-lg"
+            to="/"
+            as={Link}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} /> Back
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

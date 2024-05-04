@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { Grid, Button, Typography, IconButton } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import HomeIcon from "@mui/icons-material/Home";
-
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, faChevronLeft, faHouse } from '@fortawesome/free-solid-svg-icons';
 const pages = {
   JOIN: "pages.join",
   CREATE: "pages.create",
@@ -26,50 +24,44 @@ const Info = (props) => {
   });
 
   return (
-    <Grid container spacing={3} className="mt-5 bg-dark  flex flex-col justify-center items-center rounded-lg w-100  pb-5 pt-5 pr-5 text-white">
-      <Grid
-        container
-        spacing={6}
-        className="flex flex-col justify-center items-center"
-      >
-        <Grid item xs={4} align="center">
-          <Button
-            to="/"
-            component={Link}
-            className="bg-link mx-1 text-white btn-circle hover-bright-lg"
-          >
-            <HomeIcon />
+    <Container fluid className="mt-5 bg-dark flex justify-center items-center rounded-lg py-5 px-4 text-white">
+      <Row className="justify-content-center align-items-center">
+        <Col xs={12} md={4} className="text-center">
+          <Button to="/" as={Link} className="bg-link mx-1 text-white btn-circle hover-bright-lg">
+          <FontAwesomeIcon icon={faHouse} />
           </Button>
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
-      <Grid item xs={12} align="center">
-        <Typography component="h4" variant="h4">
-          What is Party Rock ?
-        </Typography>
-      </Grid>
+      <Row className="justify-content-center align-items-center mt-3">
+        <Col xs={12} className="text-center">
+          <h4>What is Party Rock ?</h4>
+        </Col>
+      </Row>
 
-      <Grid item xs={12} align="center">
-        <Typography variant="body1">
-          {page === pages.JOIN ? joinInfo() : createInfo()}
-        </Typography>
-      </Grid>
+      <Row className="justify-content-center align-items-center mt-3">
+        <Col xs={12} className="text-center">
+          <p>{page === pages.JOIN ? joinInfo() : createInfo()}</p>
+        </Col>
+      </Row>
 
-      <Grid item xs={12} align="center">
-        <IconButton
-          onClick={() => {
-            page === pages.CREATE ? setPage(pages.JOIN) : setPage(pages.CREATE);
-          }}
-          className="text-default bg-white"
-        >
-          {page === pages.CREATE ? (
-            <NavigateBeforeIcon />
-          ) : (
-            <NavigateNextIcon />
-          )}
-        </IconButton>
-      </Grid>
-    </Grid>
+      <Row className="justify-content-center align-items-center mt-3">
+        <Col xs={12} className="text-center">
+          <Button
+            onClick={() => {
+              page === pages.CREATE ? setPage(pages.JOIN) : setPage(pages.CREATE);
+            }}
+            className="text-default bg-white"
+          >
+            {page === pages.CREATE ? (
+              <FontAwesomeIcon icon={faChevronRight} />
+            ) : (
+              <FontAwesomeIcon icon={faChevronLeft} />
+            )}
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
