@@ -144,7 +144,7 @@ const Room = ({ leaveRoomCallback }) => {
 
   return (
     <div className="w-100 inline-flex">
-    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-80-vh w-100  overflow-y-scroll overflow-x-hidden"
+    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-y-scroll overflow-x-hidden"
     >
       <Row className="justify-content-center items-center my-2">
         <div xs={12} className="mt-5 text-center">
@@ -167,8 +167,8 @@ const Room = ({ leaveRoomCallback }) => {
         </div>
       </Row>
     </Container>
-    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-80-vh w-50 overflow-y-scroll overflow-x-hidden"
-       style={{ minWidth: '18rem' }}
+    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
+       style={{ minWidth: '20rem' }}
     >
       <Row className="justify-content-center items-center my-2">
         <div xs={12} className="mt-5 text-center">
