@@ -14,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Container fluid className="h-100 w-100 overflow-y-hidden m-0 justify-center items-center"
+        <Container fluid className="h-100 w-100 overflow-y-hidden m-0 ml-0 pl-0 justify-center items-center"
         >
 
           <div className="items-center justify-center w-100 overflow-y-hidden  my-2">

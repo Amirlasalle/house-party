@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Amir",
+        "propic": "./images/friends/aj.png",
+        "status": "online",
+        "username": "AJ23"
+    },
+    {
+        "name": "Angie",
+        "propic": "./images/friends/angie.png",
+        "status": "offline",
+        "username": "Angie23"
+    },
+    {
+        "name": "Angelo",
+        "propic": "./images/friends/angelo.png",
+        "status": "online",
+        "username": "supersaiyajin23"
+    },
+    {
+        "name": "Omar",
+        "propic": "./images/friends/omar.png",
+        "status": "online",
+        "username": "omar23"
+    },
+    {
+        "name": "Leo",
+        "propic": "./images/friends/leo.png",
+        "status": "onlinie",
+        "username": "Leocarpentry7"
+    },
+    {
+        "name": "Marie",
+        "propic": "./images/friends/marie.png",
+        "status": "online",
+        "username": "Malusa373"
+    },
+    {
+        "name": "Jazzy",
+        "propic": "./images/friends/jazzy.png",
+        "status": "online",
+        "username": "JazzyLex"
+    },
+    {
+        "name": "Alba",
+        "propic": "./images/friends/alba.png",
+        "status": "offline",
+        "username": "seanlova64"
+    },
+    {
+        "name": "Jared",
+        "propic": "./images/friends/jared.png",
+        "status": "online",
+        "username": "potato3"
+    },
+    {
+        "name": "Sebas",
+        "propic": "./images/friends/sebas.png",
+        "status": "offline",
+        "username": "spikey8"
+    }
+]
