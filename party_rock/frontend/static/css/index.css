@@ -80,6 +80,10 @@ body {
   background-color: #1ed760;
 }
 
+.bottom {
+  bottom: 0 !important;
+}
+
 .App {
   text-align: center;
   bottom: 0;
@@ -2687,22 +2691,22 @@ input:focus {
 }
 
 .where-to-cards-two {
-  width: 4.5rem !important;
-  height: 5rem;
+  width: 4rem !important;
+  height: 4rem;
   border: 1px solid transparent !important;
 }
 
 .where-to-image-two {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid #a0a0a058;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid transparent;
   border-radius: 50%;
   aspect-ratio: 1/1;
 }
 
-.where-to-image-two:hover {
+/* .where-to-image-two:hover {
   border: 1px solid #1c1c1c9b;
-}
+} */
 
 .where-to-text-two {
   font-size: 0.65rem;
@@ -3212,6 +3216,11 @@ width: auto !important;
   height: 100% !important;
 }
 
+
+.h-full {
+  height: 100% !important;
+}
+
 .h-99 {
   height: 99% !important;
 }
@@ -3546,7 +3555,25 @@ h-25-w-25 {
 .h-70-vh {
     height: 70vh !important;
 }
+.h-69-vh {
+  height: 69vh !important;
+}
+.h-68-5-vh {
+  height: 68.0625vh !important;
+}
+.h-68-vh {
+  height: 68vh !important;
+}
+.h-67-vh {
+  height: 67vh !important;
+}
+.h-66-vh {
+  height: 66vh !important;
+}
 
+.h-65-vh {
+  height: 86vh !important;
+}
 .h-60-vh {
     height: 60vh !important;
 }
@@ -5029,6 +5056,10 @@ h-25-w-25 {
 
 .bg-blue-900 {
   background-color: #2a4365 !important;
+}
+
+.hover-bg-dark-light:hover {
+  background-color: #3a3a3a !important;
 }
 
 .hover-bg-spotify-green:hover {
