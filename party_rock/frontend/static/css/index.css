@@ -3118,7 +3118,6 @@ p {
   font-family: 'Poppins', sans-serif;
   margin: 0 0 0.5rem;
   line-height: 1.25;
-  padding-left: 40px !important;
 }
 
 h1 {
@@ -3146,7 +3145,7 @@ h6 {
 }
 
 p {
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   margin: 0 0 1rem;
   line-height: 1.5;
 }
@@ -4245,12 +4244,20 @@ h-25-w-25 {
 
 /* TEXT SIZES */
 
-.text-xs {
+.text-xxs {
   font-size: 0.75rem !important;
+}
+
+.text-xs {
+  font-size: 0.8rem !important;
 }
 
 .text-sm {
   font-size: 0.875rem !important;
+}
+
+.text-medium {
+  font-size: 0.925rem !important;
 }
 
 .text-base {
@@ -4805,7 +4812,9 @@ h-25-w-25 {
 .bg-primary {
   background-color: #2d3e50 !important;
 }
-
+.bg-clear{
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
 .bg-info {
   background-color: #1bbc9b !important;
 }
@@ -5057,9 +5066,16 @@ h-25-w-25 {
 .bg-blue-900 {
   background-color: #2a4365 !important;
 }
+.bg-dark-light {
+  background-color: #3a3a3a !important;
+}
 
 .hover-bg-dark-light:hover {
   background-color: #3a3a3a !important;
+}
+
+.hover-bg-clear:hover{
+  background-color: rgba(255, 255, 255, 0.07) !important;
 }
 
 .hover-bg-spotify-green:hover {
@@ -7072,7 +7088,6 @@ label form [type='radio'] {
     font-family: 'Poppins', sans-serif;
     margin: 0 0 0.5rem;
     line-height: 1.25;
-    padding-left: 100px !important;
   }
 
   .move-it {

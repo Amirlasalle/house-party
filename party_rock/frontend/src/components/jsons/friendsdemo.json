@@ -1,59 +1,69 @@
 [
     {
+        "id": 1,
         "name": "Amir",
         "propic": "./images/friends/aj.png",
         "status": "online",
         "username": "AJ23"
     },
     {
+        "id": 2,
         "name": "Angie",
         "propic": "./images/friends/angie.png",
-        "status": "offline",
+        "status": "away",
         "username": "Angie23"
     },
     {
+        "id": 3,
         "name": "Angelo",
         "propic": "./images/friends/angelo.png",
         "status": "online",
         "username": "supersaiyajin23"
     },
     {
+        "id": 4,
         "name": "Omar",
         "propic": "./images/friends/omar.png",
         "status": "online",
         "username": "omar23"
     },
     {
+        "id": 5,
         "name": "Leo",
         "propic": "./images/friends/leo.png",
-        "status": "onlinie",
+        "status": "online",
         "username": "Leocarpentry7"
     },
     {
+        "id": 6,
         "name": "Marie",
         "propic": "./images/friends/marie.png",
         "status": "online",
         "username": "Malusa373"
     },
     {
+        "id": 7,
         "name": "Jazzy",
         "propic": "./images/friends/jazzy.png",
         "status": "online",
         "username": "JazzyLex"
     },
     {
+        "id": 8,
         "name": "Alba",
         "propic": "./images/friends/alba.png",
         "status": "offline",
         "username": "seanlova64"
     },
     {
+        "id": 9,
         "name": "Jared",
         "propic": "./images/friends/jared.png",
-        "status": "online",
+        "status": "away",
         "username": "potato3"
     },
     {
+        "id": 10,
         "name": "Sebas",
         "propic": "./images/friends/sebas.png",
         "status": "offline",
