@@ -100,41 +100,40 @@ const Room = ({ leaveRoomCallback }) => {
 
   const renderSettings = () => {
     return (
-      <Container fluid className="mt-5 flex justify-center items-center bg-dark p-5 rounded-lg h-80-vh w-100 overflow-y-scroll overflow-x-hidden">
-        <Row className="justify-content-center align-items-center">
-          <Col xs={12} className="my-2">
+      <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-y-scroll overflow-x-hidden">
+        <div className="justify-content-center align-items-center">
+          <div className="flex flex-col items-center justify-center">
+          <div
+              className="update-button items-center justify-center rounded-full cursor-pointer text-white"
+              onClick={() => updateShowSettings(false)}
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
             <CreateRoomPage
               update={true}
               votesToSkip={roomDetails.votesToSkip}
               guestCanPause={roomDetails.guestCanPause}
               roomCode={roomCode}
               updateCallback={getRoomDetails}
+              className="flex flex-col justify-center items-center bg-dark w-100"
             />
-          </Col>
-          <Col xs={12} className="text-center">
-            <Button
-              variant="contained"
-              className="bg-danger rounded-lg text-white hover-bright-lg"
-              onClick={() => updateShowSettings(false)}
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </Button>
-          </Col>
-        </Row>
+          
+          </div>
+        </div>
       </Container>
     );
   };
 
   const renderSettingsButton = () => {
     return (
-  
-          <Button
-            className="bg-spotify-green mx-2 btn-circle hover-bright-lg"
-            onClick={() => updateShowSettings(true)}
-          >
-            <FontAwesomeIcon icon={faGear} className="text-white" />
-          </Button>
-      
+
+      <Button
+        className="bg-spotify-green mx-2 btn-circle hover-bright-lg"
+        onClick={() => updateShowSettings(true)}
+      >
+        <FontAwesomeIcon icon={faGear} className="text-white" />
+      </Button>
+
     );
   };
 
@@ -144,53 +143,53 @@ const Room = ({ leaveRoomCallback }) => {
 
   return (
     <div className="w-100 inline-flex">
-    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-y-scroll overflow-x-hidden"
-    >
-      <Row className="justify-content-center items-center my-2">
-        <div xs={12} className="mt-5 text-center">
-          <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <MusicPlayer {...song} />
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
-            {roomDetails.isHost ? renderSettingsButton() : null}
-            <Button
-              variant="contained"
-              className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
-              onClick={leaveButtonPressed}
-            >
-              <FontAwesomeIcon icon={faRightFromBracket} />
-            </Button>
-          </Col>
-        </div>
-      </Row>
-    </Container>
-    <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
-       style={{ minWidth: '20rem' }}
-    >
-      <Row className="justify-content-center items-center my-2">
-        <div xs={12} className="mt-5 text-center">
-          <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <MusicPlayer {...song} />
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
-            {roomDetails.isHost ? renderSettingsButton() : null}
-            <Button
-              variant="contained"
-              className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
-              onClick={leaveButtonPressed}
-            >
-              <FontAwesomeIcon icon={faRightFromBracket} />
-            </Button>
-          </Col>
-        </div>
-      </Row>
-    </Container>
+      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-hidden"
+      >
+        <Row className="justify-center items-center my-2">
+          <div className="text-center">
+            <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
+          </div>
+          <div className="flex flex-col justify-center items-center">
+            <MusicPlayer {...song} />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
+              {roomDetails.isHost ? renderSettingsButton() : null}
+              <Button
+                variant="contained"
+                className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
+                onClick={leaveButtonPressed}
+              >
+                <FontAwesomeIcon icon={faRightFromBracket} />
+              </Button>
+            </Col>
+          </div>
+        </Row>
+      </Container>
+      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
+        style={{ minWidth: '20rem' }}
+      >
+        <Row className="justify-content-center items-center my-2">
+          <div className="text-center">
+            <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
+          </div>
+          <div className="flex flex-col justify-center items-center">
+            <MusicPlayer {...song} />
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
+              {roomDetails.isHost ? renderSettingsButton() : null}
+              <Button
+                variant="contained"
+                className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
+                onClick={leaveButtonPressed}
+              >
+                <FontAwesomeIcon icon={faRightFromBracket} />
+              </Button>
+            </Col>
+          </div>
+        </Row>
+      </Container>
     </div>
   );
 };

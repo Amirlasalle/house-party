@@ -107,7 +107,7 @@ function NavigationBar({ leaveRoomCallback }) {
                                                 <Image
                                                     src={friend.propic}
 
-                                                    className="img-fluid d-flex border border-spotify-green flex-wrap justify-content-around cursor-pointer where-to-image-two" />
+                                                    className="img-fluid d-flex border-spotify-green flex-wrap justify-content-around cursor-pointer where-to-image-two" />
                                             </div>
                                         </OverlayTrigger>
                                     ))}
