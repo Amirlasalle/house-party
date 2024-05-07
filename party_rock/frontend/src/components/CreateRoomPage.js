@@ -68,14 +68,14 @@ const CreateRoomPage = ({
     return (
       <div className="d-flex flex-column items-center justify-center bg-dark rounded-lg pr-4">
         <Button
-          className="bg-spotify-green hover-bg-spotify mx-1 rounded-lg text-white"
+          className="bg-spotify-green hover-bg-spotify mx-1 my-1 rounded-lg btn-sm text-white"
           variant="contained"
           onClick={handleRoomButtonPressed}
         >
           Create A Room
         </Button>
         <Button
-          className="bg-danger mx-1 rounded-lg no-decoration hover-bg-red-400 text-white"
+          className="bg-danger mx-1 my-2 rounded-lg btn-sm no-decoration hover-bg-red-400 text-white"
           variant="contained"
           to="/"
           as={Link}
@@ -90,7 +90,7 @@ const CreateRoomPage = ({
     return (
       <div className="d-flex flex-col items-center justify-center bg-dark mr-4">
         <Button
-          className="bg-spotify-green hover-bg-spotify mx-1 rounded-lg text-white"
+          className="bg-spotify-green hover-bg-spotify mx-1 my-1 rounded-lg btn-sm text-white"
           variant="contained"
           onClick={handleUpdateButtonPressed}
         >
@@ -104,14 +104,14 @@ const CreateRoomPage = ({
 
   return (
     <Container fluid className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100">
-        <div className="flex flex-col justify-center items-center my-5 h-87-vh w-100">
+        <div className="flex flex-col justify-center items-center text-center my-5 h-87-vh w-100">
           {errorMsg && (
-            <Alert variant="danger" onClose={() => setErrorMsg("")} dismissible>
+            <Alert variant="danger" className="text-center items-center justify-center" onClose={() => setErrorMsg("")} dismissible>
               {errorMsg}
             </Alert>
           )}
           {successMsg && (
-            <Alert variant="success" onClose={() => setSuccessMsg("")} dismissible>
+            <Alert variant="success" className="text-center items-center justify-center" onClose={() => setSuccessMsg("")} dismissible>
               {successMsg}
             </Alert>
           )}

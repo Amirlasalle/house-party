@@ -8,23 +8,87 @@ body {
 }
 
 
-::-webkit-scrollbar {
-  width: 7px;
+::-webkit-scrollbar:hover {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgba(255, 255, 255, 0.3);
+  background-image: none;
+  background-origin: padding-box;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-size: auto;
+  border-bottom-color: rgb(179, 179, 179);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(179, 179, 179);
+  border-left-style: none;
+  border-left-width: 0px;
+  border-right-color: rgb(179, 179, 179);
+  border-right-style: none;
+  border-right-width: 0px;
+  border-top-color: rgb(179, 179, 179);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-style: none;
+  border-top-width: 0px;
+  box-sizing: border-box;
+  color: rgb(179, 179, 179);
+  direction: ltr;
+  display: block;
+  font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", helvetica, arial, "Hiragino Kaku Gothic ProN", Meiryo, "MS Gothic", sans-serif;
+  height: 86.4531px;
+  line-height: normal;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  max-height: none;
+  min-height: 30px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  pointer-events: auto;
+  position: absolute;
+  right: 0px;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0);
+  text-transform: none;
+  touch-action: none;
+  transition-behavior: normal, normal, normal, normal;
+  transition-delay: 0s, 0s, 0s, 0s;
+  transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+  transition-property: opacity, background-color, border-color, width;
+  transition-timing-function: ease, ease, ease, ease;
+  unicode-bidi: isolate;
+  visibility: hidden;
+  width: 8px;
+  -webkit-font-smoothing: antialiased;
 
 }
 
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   display: none;
 
-}
+} */
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1ed760;
+  background-color: #1ed75f9c;
 
   border-radius: 20px;
 
   border: 1px solid transparent;
 
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color: #1ed760 !important;
 }
 
 #main {
@@ -115,13 +179,15 @@ body {
   display: flex !important;
   justify-content: center !important;
   align-items: center;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  max-width: 40px !important;
+  min-width: 40px !important;
   border: 1px solid #1ed760 !important;
   opacity: 1;
   background-color: #212121;
-  padding: 1rem;
   margin: 0;
   z-index: 100;
   transform: translateY(200%);
@@ -146,7 +212,9 @@ body {
   padding: 5px;
   align-items: center !important;
   justify-content: center !important;
-  margin: calc(0 * var(--bs-modal-header-padding-y)) calc(1 * var(--bs-modal-header-padding-x)) calc(0 * var(--bs-modal-header-padding-y)) auto;
+  margin: calc(1.25 * var(--bs-modal-header-padding-y)) calc(1.25 * var(--bs-modal-header-padding-x)) calc(1.25 * var(--bs-modal-header-padding-y)) auto;
+  margin-right: 0.25rem !important;
+  margin-top: 0.25rem !important;
 }
 
 .bottom {
@@ -3215,8 +3283,6 @@ h6 {
 
 p {
   font-size: 0.85rem;
-  margin: 0 0 1rem;
-  line-height: 1.5;
 }
 
 ul,
@@ -6034,6 +6100,35 @@ h-25-w-25 {
   padding: 0 !important;
   max-width: 40px !important;
   min-width: 40px !important;
+
+}
+
+.btn-circle:focus {
+  outline: none !important;
+}
+
+.btn-circle-green {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  max-width: 40px !important;
+  min-width: 40px !important;
+  border: 1px solid #166e35 !important;
+  opacity: 1;
+  background-color: #1ed760 !important;
+  padding: 0.6rem;
+  z-index: 500 !important;
+}
+
+.btn-circle-green:hover {
+  box-shadow: rgba(29, 215, 94, 0.502) 0px 5px 15px !important;
+  transition: box-shadow 0.2s !important;
+  border: 1px solid transparent !important;
+  background-color: #1ed760 !important;
 }
 
 /* Flex Container */
@@ -8003,7 +8098,7 @@ label form [type='radio'] {
 
   p {
     font-size: 0.7rem;
-    margin: 0 0 1rem;
-    line-height: 1.5;
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
   }
 }

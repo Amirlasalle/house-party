@@ -14,12 +14,12 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Container fluid className="h-100 w-100 overflow-y-hidden m-0 ml-0 pl-0 justify-center items-center"
+        <Container fluid className="h-100-vh w-100-vw overflow-y-hidden m-0 ml-0 pl-0 justify-center items-center"
         >
 
           <div className="items-center justify-center w-100 overflow-y-hidden  my-2">
             <div className="h-100 w-100  overflow-x-scroll overflow-y-hidden">
-              <div className="h-87-vh inline-flex overflow-y-hidden my-1"> 
+              <div className="h-87-vh w-100 inline-flex overflow-y-hidden my-1"> 
                 <NavigationBar className="h-87-vh"/>
 
                 <HomePage className="h-87-vh " />

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
+import ArtistDetails from "./ArtistDetails"
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -18,6 +19,7 @@ const Room = ({ leaveRoomCallback }) => {
   const { roomCode } = useParams();
   const navigate = useNavigate();
   const [song, setSong] = useState(null);
+
 
   const getRoomDetails = () => {
     fetch("/api/get-room" + "?code=" + roomCode)
@@ -77,11 +79,14 @@ const Room = ({ leaveRoomCallback }) => {
       });
   };
 
+
   useEffect(() => {
     getRoomDetails();
     const interval = setInterval(getCurrentSong, 1000);
     return () => clearInterval(interval);
   }, []);
+
+
 
   const leaveButtonPressed = () => {
     const requestOptions = {
@@ -128,7 +133,7 @@ const Room = ({ leaveRoomCallback }) => {
     return (
 
       <Button
-        className="bg-spotify-green mx-2 btn-circle hover-bright-lg"
+        className=" mx-2 rounded-full btn-circle-green"
         onClick={() => updateShowSettings(true)}
       >
         <FontAwesomeIcon icon={faGear} className="text-white" />
@@ -144,6 +149,7 @@ const Room = ({ leaveRoomCallback }) => {
   return (
     <div className="w-100 inline-flex">
       <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-hidden"
+       style={{ minWidth: '25rem' }}
       >
         <Row className="justify-center items-center my-2">
           <div className="text-center">
@@ -157,7 +163,7 @@ const Room = ({ leaveRoomCallback }) => {
               {roomDetails.isHost ? renderSettingsButton() : null}
               <Button
                 variant="contained"
-                className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
+                className="bg-danger rounded-lg text-white hover-bright-lg mx-2 btn-circle"
                 onClick={leaveButtonPressed}
               >
                 <FontAwesomeIcon icon={faRightFromBracket} />
@@ -166,28 +172,17 @@ const Room = ({ leaveRoomCallback }) => {
           </div>
         </Row>
       </Container>
+
+
+
       <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
         style={{ minWidth: '20rem' }}
       >
         <Row className="justify-content-center items-center my-2">
-          <div className="text-center">
-            <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
-          </div>
           <div className="flex flex-col justify-center items-center">
-            <MusicPlayer {...song} />
+        
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
-              {roomDetails.isHost ? renderSettingsButton() : null}
-              <Button
-                variant="contained"
-                className="bg-danger rounded-lg text-white hover-bright-lg mx-2"
-                onClick={leaveButtonPressed}
-              >
-                <FontAwesomeIcon icon={faRightFromBracket} />
-              </Button>
-            </Col>
-          </div>
+
         </Row>
       </Container>
     </div>

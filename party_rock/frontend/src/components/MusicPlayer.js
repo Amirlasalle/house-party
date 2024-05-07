@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Oig2 from "../images/OIG2.png"
 import { Card, ProgressBar, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
@@ -67,7 +68,7 @@ const MusicPlayer = (props) => {
       >
         <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-content-center">
           <Image
-            src={props.image_url}
+            src={`${props.image_url ? props.image_url : Oig2}`}
             width="85%"
             height="85%"
             alt={Image}
@@ -76,16 +77,16 @@ const MusicPlayer = (props) => {
         </div>
 
         <div className="pl-0 text-center">
-          <h6 className="mt-2 pl-0 text-white font-semibold">{props.title}</h6>
+          <h6 className="mt-2 pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h6>
           <div className="max-w-100 flex items-center justify-center">
 
-          <p className="w-auto flex items-center justify-center small pl-0 px-6 text-default hover-text-white">{props.artist}</p>
+          <p className="w-auto flex items-center justify-center small pl-0 px-6 text-default hover-text-white">{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 " }`}</p>
           </div>
 
           <div className="inline-flex flex-row justify-center items-center my-2">
            
             <FontAwesomeIcon onClick={() => prevSong()}   icon={faBackwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" />
-       <div className="flex items-center justify-center">
+       <div className="flex items-center justify-center text-center">
             <div
               className={`mx-5 mt-0 flex justify-center items-center text-white btn-circle bg-white cursor-pointer ${isClicked ? "hover-shrink" : "hover-grow"}`}
               onClick={() => {
