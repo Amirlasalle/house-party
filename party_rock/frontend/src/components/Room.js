@@ -100,7 +100,7 @@ const Room = ({ leaveRoomCallback }) => {
 
   const renderSettings = () => {
     return (
-      <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-y-scroll overflow-x-hidden">
+      <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-hidden">
         <div className="justify-content-center align-items-center">
           <div className="flex flex-col items-center justify-center">
           <div

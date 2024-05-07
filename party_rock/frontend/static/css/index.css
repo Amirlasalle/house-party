@@ -7,22 +7,25 @@ body {
   overflow: hidden !important;
 }
 
-::-webkit-scrollbar-thumb {
-  display: none;
+
+::-webkit-scrollbar {
+  width: 7px;
+
 }
-
-
-*:hover::-webkit-scrollbar-thumb {
-  display: block;
-  background: #121212;
-  border-radius: 44px;
-}
-
 
 ::-webkit-scrollbar-track {
-  background: none;
+  display: none;
+
 }
 
+::-webkit-scrollbar-thumb {
+  background-color: #1ed760;
+
+  border-radius: 20px;
+
+  border: 1px solid transparent;
+
+}
 
 #main {
   position: fixed;
@@ -97,8 +100,7 @@ body {
   border: 1px solid #166e35 !important;
   opacity: 1;
   background-color: #1ed760;
-  padding: calc(var(--bs-modal-header-padding-y) * .7) calc(var(--bs-modal-header-padding-x) * .7);
-  margin: calc(-2.7 * var(--bs-modal-header-padding-y)) calc(1 * var(--bs-modal-header-padding-x)) calc(-1.5 * var(--bs-modal-header-padding-y)) auto;
+  padding: 0.6rem;
   z-index: 500 !important;
 }
 
@@ -113,8 +115,8 @@ body {
   display: flex !important;
   justify-content: center !important;
   align-items: center;
-  height: 44px;
-  width: 44px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   border: 1px solid #1ed760 !important;
   opacity: 1;
