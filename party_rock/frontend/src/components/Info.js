@@ -3,6 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faHouse } from '@fortawesome/free-solid-svg-icons';
+import AnimatedText from "./AnimatedText";
+
 const pages = {
   JOIN: "pages.join",
   CREATE: "pages.create",
@@ -24,20 +26,15 @@ const Info = (props) => {
   });
 
   return (
-    <Container fluid className="mt-5 bg-dark flex justify-center items-center rounded-lg py-5 px-4 text-white">
-      <Row className="justify-content-center align-items-center">
-        <Col xs={12} md={4} className="text-center">
-          <Button to="/" as={Link} className="bg-link mx-1 text-white btn-circle hover-bright-lg">
-          <FontAwesomeIcon icon={faHouse} />
-          </Button>
-        </Col>
-      </Row>
-
-      <Row className="justify-content-center align-items-center mt-3">
-        <Col xs={12} className="text-center">
-          <h4>What is Party Rock ?</h4>
-        </Col>
-      </Row>
+    <Container fluid className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100 text-white">
+    <div className="flex flex-col justify-center items-center text-center my-5 h-87-vh w-100">
+ 
+    <div className="flex items-center justify-center text-center">
+          <AnimatedText
+            text="What is Party Rock?"
+            className="text-center text-4xl"
+          />
+        </div>
 
       <Row className="justify-content-center align-items-center mt-3">
         <Col xs={12} className="text-center">
@@ -61,6 +58,7 @@ const Info = (props) => {
           </Button>
         </Col>
       </Row>
+      </div>
     </Container>
   );
 };
