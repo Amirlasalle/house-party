@@ -28,9 +28,9 @@ const Info = (props) => {
   });
 
   return (
-    <Container fluid id="gradient" className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100 text-white overflow-y-scroll overflow-x-hidden">
-      <div className="flex flex-col justify-center items-center text-center mt-5 h-full w-100 ">
-        <div className="justify-center items-center mt-15">
+    <Container fluid id="gradient" className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100 text-white overflow-y-scroll overflow-x-hidden ">
+      <div className="flex flex-col justify-center items-center text-center mt-10 h-full w-100 mb-10">
+        <div className="justify-center items-center mt-17">
           <div className="flex  items-center justify-center text-center mt-17">
             <AnimatedText
               text="What is Party Rock?"
@@ -42,9 +42,9 @@ const Info = (props) => {
             transition={false}
             id="noanim-tab-example"
             variant='tabs'
-            className="tabs h-10-vh mb-17 bg-dark flex-wrap inline-flex flex-row justify-center"
+            className="tabs h-10-vh mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
           >
-            <Tab eventKey="joinandcreate" title="Join/Create" className="bg-dark tab">
+            <Tab eventKey="joinandcreate" title="Join/Create" className="bg-dark mb-5 tab">
               {/* <div className="flex  items-center justify-center text-center mt-10">
               <AnimatedText
                 text="What is Party Rock?"

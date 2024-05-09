@@ -80,7 +80,7 @@ const MusicPlayer = (props) => {
           <h6 className="mt-2 pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h6>
           <div className="max-w-100 flex items-center justify-center">
 
-          <p className="w-auto flex items-center justify-center small pl-0 px-6 text-default hover-text-white">{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 " }`}</p>
+          <p className={`w-auto flex items-center justify-center small pl-0 px-6  hover-text-white ${props.artist ? 'text-default' : 'text-black' }`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 " }`}</p>
           </div>
 
           <div className="inline-flex flex-row justify-center items-center my-2">
