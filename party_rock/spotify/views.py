@@ -73,8 +73,12 @@ class CurrentSong(APIView):
         duration = item.get('duration_ms')
         progress = response.get('progress_ms')
         album_cover = item.get('album').get('images')[0].get('url')
+        artist_playlist = item.get('playlist')
+        full_album = item.get('album')
+        upcoming_shows = item.get('show')
         is_playing = response.get('is_playing')
         song_id = item.get('id')
+
 
         artist_string = ""
 
@@ -93,6 +97,9 @@ class CurrentSong(APIView):
             'time': progress,
             'image_url': album_cover,
             'is_playing': is_playing,
+            'playlist': artist_playlist,
+            'album': full_album,
+            'show':upcoming_shows,
             'votes': votes,
             'votes_required': room.votes_to_skip,
             'id': song_id

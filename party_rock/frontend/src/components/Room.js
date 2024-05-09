@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
 import ArtistDetails from "./ArtistDetails"
+import {QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
+
+
+
+
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -108,7 +113,7 @@ const Room = ({ leaveRoomCallback }) => {
       <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-hidden">
         <div className="justify-content-center align-items-center">
           <div className="flex flex-col items-center justify-center">
-          <div
+            <div
               className="update-button items-center justify-center rounded-full cursor-pointer text-white"
               onClick={() => updateShowSettings(false)}
             >
@@ -122,7 +127,7 @@ const Room = ({ leaveRoomCallback }) => {
               updateCallback={getRoomDetails}
               className="flex flex-col justify-center items-center bg-dark w-100"
             />
-          
+
           </div>
         </div>
       </Container>
@@ -149,7 +154,7 @@ const Room = ({ leaveRoomCallback }) => {
   return (
     <div className="w-100 inline-flex">
       <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-hidden"
-       style={{ minWidth: '25rem' }}
+        style={{ minWidth: '25rem' }}
       >
         <Row className="justify-center items-center my-2">
           <div className="text-center">
@@ -175,12 +180,26 @@ const Room = ({ leaveRoomCallback }) => {
 
 
 
-      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
+      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-x-hidden"
         style={{ minWidth: '20rem' }}
       >
         <Row className="justify-content-center items-center my-2">
           <div className="flex flex-col justify-center items-center">
-        
+            <Tabs
+              defaultActiveKey="info"
+              transition={false}
+              id="noanim-tab-example"
+              variant='tabs'
+              className="tabs mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
+            >
+              <Tab eventKey="info" title={<PlayingIcon /> }className="bg-dark mb-5 h-full overflow-y-scroll tab">
+                <ArtistDetails />
+              </Tab>
+              <Tab eventKey="lyrics" title={<LyricsIcon />} className="bg-dark mb-5 tab">
+              </Tab>
+              <Tab eventKey="queue" title={<QueueIcon />} className="bg-dark mb-5 tab">
+              </Tab>
+            </Tabs>
           </div>
 
         </Row>

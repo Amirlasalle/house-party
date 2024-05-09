@@ -45,12 +45,7 @@ const Info = (props) => {
             className="tabs h-10-vh mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
           >
             <Tab eventKey="joinandcreate" title="Join/Create" className="bg-dark mb-5 tab">
-              {/* <div className="flex  items-center justify-center text-center mt-10">
-              <AnimatedText
-                text="What is Party Rock?"
-                className="text-center mt-5 text-4xl"
-              />
-            </div> */}
+
 
               <div className="justify-center items-center mt-15">
                 <div className="text-center">
