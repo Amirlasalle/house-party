@@ -6,7 +6,7 @@ import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
 import ArtistDetails from "./ArtistDetails"
-import {QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
+import { QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
 
 
 
@@ -46,6 +46,7 @@ const Room = ({ leaveRoomCallback }) => {
         }
       });
   };
+
 
   const authenticateSpotify = () => {
     fetch("/spotify/is-authenticated")
@@ -134,6 +135,8 @@ const Room = ({ leaveRoomCallback }) => {
     );
   };
 
+
+
   const renderSettingsButton = () => {
     return (
 
@@ -180,30 +183,40 @@ const Room = ({ leaveRoomCallback }) => {
 
 
 
-      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50 overflow-x-hidden"
+      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50  overflow-hidden"
         style={{ minWidth: '20rem' }}
       >
-        <Row className="justify-content-center items-center my-2">
-          <div className="flex flex-col justify-center items-center">
-            <Tabs
-              defaultActiveKey="info"
-              transition={false}
-              id="noanim-tab-example"
-              variant='tabs'
-              className="tabs mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
-            >
-              <Tab eventKey="info" title={<PlayingIcon /> }className="bg-dark mb-5 h-full overflow-y-scroll tab">
-                <ArtistDetails />
-              </Tab>
-              <Tab eventKey="lyrics" title={<LyricsIcon />} className="bg-dark mb-5 tab">
-              </Tab>
-              <Tab eventKey="queue" title={<QueueIcon />} className="bg-dark mb-5 tab">
-              </Tab>
-            </Tabs>
-          </div>
 
-        </Row>
+        <div className="flex flex-col h-100 w-100 justify-center items-center">
+          <Tabs
+            defaultActiveKey="info"
+            id="noanim-tab-example"
+            variant='tabs'
+            className="tabs bg-dark flex-wrap inline-flex flex-row justify-center  items-center h-11-vh p-2"
+          >
+            <Tab eventKey="info" title={<PlayingIcon />} className="justify-center tab">
+            <div className="tab-content overflow-hidden">
+              <div className="h-100-vh">
+              <div className="bg-dark px-3 overflow-y-scroll w-100 tab-body tab py-5  justify-center">
+                <ArtistDetails />
+                <ArtistDetails />
+                <ArtistDetails />
+                <ArtistDetails />
+                <ArtistDetails />
+                <ArtistDetails />
+              </div>
+              </div>
+              </div>
+            </Tab>
+            <Tab eventKey="lyrics" title={<LyricsIcon />} className="bg-dark mb-5 tab">
+            </Tab>
+            <Tab eventKey="queue" title={<QueueIcon />} className="bg-dark mb-5 tab">
+            </Tab>
+          </Tabs>
+        </div>
+
       </Container>
+
     </div>
   );
 };

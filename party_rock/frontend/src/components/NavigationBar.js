@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
-import { Button, Container, Form, Nav, Offcanvas, Image, OverlayTrigger, OverlayProps} from 'react-bootstrap';
+import { Button, Container, Form, Nav, Offcanvas, Image, OverlayTrigger, OverlayProps } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faSearch, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faHouse, faSearch, faUsers } from '@fortawesome/free-solid-svg-icons';
 import friendslistData from './jsons/friendsdemo.json';
+import AnimatedText from "./AnimatedText"
+import homePic from "../images/party-rock-home.png"
 
 function NavigationBar({ leaveRoomCallback }) {
 
@@ -54,34 +56,49 @@ function NavigationBar({ leaveRoomCallback }) {
     };
 
     return (
+
         <>
-            <div className=" mx-2 h-87-vh rounded-lg">
-                <Nav className="w-100 flex-column bg-dark rounded-lg px-4">
-                    <div className="flex items-center justify-center text-2xl rounded-lg text-white hover-bright-lg">
-                    <OverlayTrigger
-                            placement="right"
-                            delay={{ show: 250, hide: 50 }}
-                            overlay={home}
-                        >
-                        <div className="inline-flex flex-row justify-center items-center my-2">
-                            <a href='/' >
-                                <FontAwesomeIcon icon={faHouse} onClick={leaveButtonPressed} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
-                            </a>
+            <div className="inline-flex flex-row items-start justify-center bg-black h-20-vh"
+                style={{ width: '5rem' }}>
+                <Container fluid className="flex flex-col items-center justify-center bg-dark h-20-vh rounded-lg"
+                    style={{ width: '5rem' }}>
+                    <div fluid className="flex flex-col items-center justify-center">
+
+                        <div className="inline-flex flex-col items-center justify-center text-2xl bg-dark rounded-lg text-white">
+                            <div className="flex items-center justify-center text-2xl  rounded-lg text-white">
+                                <OverlayTrigger
+                                    placement="right"
+                                    delay={{ show: 250, hide: 50 }}
+                                    overlay={home}
+                                >
+                                    <div className="inline-flex flex-row justify-center mb-3 items-center">
+                                        <a href='/' >
+                                            <FontAwesomeIcon icon={faHouse} onClick={leaveButtonPressed} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
+                                        </a>
+                                    </div>
+                                </OverlayTrigger>
+                            </div>
+                            <OverlayTrigger
+                                placement="right"
+                                delay={{ show: 250, hide: 50 }}
+                                overlay={search}
+                            >
+                                <div className="inline-flex flex-row justify-center items-center">
+                                    <FontAwesomeIcon icon={faSearch} onClick={handleShowOffcanvas} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
+                                </div>
+                            </OverlayTrigger>
                         </div>
-                        </OverlayTrigger>
+
                     </div>
-                    <OverlayTrigger
-                            placement="right"
-                            delay={{ show: 250, hide: 50 }}
-                            overlay={search}
-                        >
-                    <div className="inline-flex flex-row justify-center items-center my-2 pb-2">
-                        <FontAwesomeIcon icon={faSearch} onClick={handleShowOffcanvas} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
-                    </div>
-                    </OverlayTrigger>
-                </Nav>
-                <div className="p-0 h-full w-100 flex-column rounded-lg">
-                    <div className='bg-dark h-68-vh mt-1 rounded-lg'>
+                </Container>
+            </div>
+
+
+            <div className="inline-flex flex-row items-center justify-center bg-black h-80-vh"
+                style={{ width: '5rem' }}>
+                <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg h-75-vh mb-2"
+                    style={{ width: '5rem' }}>
+                    <div fluid className="flex flex-col items-center justify-center w-100">
                         <OverlayTrigger
                             placement="right"
                             delay={{ show: 250, hide: 50 }}
@@ -91,14 +108,14 @@ function NavigationBar({ leaveRoomCallback }) {
                                 <FontAwesomeIcon icon={faUsers} onClick={handleShowOffcanvas} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
                             </div>
                         </OverlayTrigger>
-                        <div className='h-50-vh p-1 justify-center overflow-y-scroll'>
+                        <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
                             <div>
                                 <div className=' justify-center items-center flex flex-col'>
                                     {friendslist.map((friend, id) => (
                                         <OverlayTrigger
                                             key={friend.id}
                                             placement="right"
-                                            delay={{ show: 250, hide: 250 }}
+                                            delay={{ show: 250, hide: 50 }}
                                             overlay={friendDetails(friend)}
                                         >
                                             <div
@@ -115,22 +132,23 @@ function NavigationBar({ leaveRoomCallback }) {
                             </div>
                         </div>
                     </div>
-                    <Offcanvas
-                        show={showOffcanvas}
-                        onHide={handleCloseOffcanvas}
-                        placement="start"
-                        aria-labelledby="friendsList"
-                        className="flex h-100 bg-spotify-green"
-                    >
-                        <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id="offcanvasNavbarLabel" className='text-white'><span className='flex items-center justify-center'>Friends List</span></Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
-                            Hello Friends
-                        </Offcanvas.Body>
-                    </Offcanvas>
-                </div>
+                </Container>
+                <Offcanvas
+                    show={showOffcanvas}
+                    onHide={handleCloseOffcanvas}
+                    placement="start"
+                    aria-labelledby="friendsList"
+                    className="flex h-100 bg-spotify-green"
+                >
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title id="offcanvasNavbarLabel" className='text-white'><span className='flex items-center justify-center'>Friends List</span></Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        Hello Friends
+                    </Offcanvas.Body>
+                </Offcanvas>
             </div>
+
         </>
     );
 }

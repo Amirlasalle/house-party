@@ -32,84 +32,93 @@ function HomePage() {
 
   const renderHomePage = () => {
     return (
-      <div className="w-100 inline-flex">
-      <Container fluid className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100"
-       style={{ minWidth: '40rem' }}>
-        <div className="flex justify-center items-center my-5 h-87-vh w-100">
-          <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
-            <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
-          </Button>
-        </div>
-        <div className=" h-80-vh flex items-center justify-center text-center">
-          <AnimatedText
-            text="Welcome To Party Rock"
-            className="text-center "
-          />
-        </div>
-        <div className="flex items-center justify-center text-center">
-          <Image
-            src={homePic}
-            alt="Party Rock"
-            width={200}
-            height={200}
-            priority="true"
-          />
-        </div>
-        <div className="w-full flex items-center justify-center text-center hover-underline-none">
-          <Button as={Link} to="/join" variant="white" className="text-dark hover-underline-none mx-1 rounded-lg">
-            Join a Room
-          </Button>
-          <Button as={Link} to="/create" variant="flat" className="text-white bg-spotify-green mx-1 my-2 rounded-lg hover-underline-none hover-bg-spotify">
-            Create a Room
-          </Button>
-        </div>
-      </Container>
+      <div className="w-100 h-100-vh bg-black inline-flex">
 
 
+        <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
+          style={{ minWidth: '30rem' }}>
+          <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
+            <div fluid className="flex flex-col items-center justify-center w-100">
+              <div className="flex justify-center items-center my-5 w-100">
+                <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
+                  <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
+                </Button>
+              </div>
+              <div className="flex items-center justify-center text-center">
+                <AnimatedText
+                  text="Welcome To Party Rock"
+                  className="text-center "
+                />
+              </div>
+              <div className="flex items-center justify-center text-center">
+                <Image
+                  src={homePic}
+                  alt="Party Rock"
+                  width={200}
+                  height={200}
+                  priority="true"
+                />
+              </div>
+              <div className="w-full flex items-center justify-center text-center hover-underline-none">
+                <Button as={Link} to="/join" variant="white" className="text-dark hover-underline-none mx-1 rounded-lg">
+                  Join a Room
+                </Button>
+                <Button as={Link} to="/create" variant="flat" className="text-white bg-spotify-green mx-1 my-2 rounded-lg hover-underline-none hover-bg-spotify">
+                  Create a Room
+                </Button>
+              </div>
+            </div>
+          </Container>
+        </div>
 
-       <Container fluid className="flex ml-2 flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-50 overflow-y-scroll overflow-x-hidden"
-        style={{ minWidth: '20rem' }}>
-       <div className="flex justify-center items-center my-5 h-87-vh w-100">
-         <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
-           <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
-         </Button>
-       </div>
-       <div className=" h-80-vh flex items-center justify-center text-center">
-         <AnimatedText
-           text="Welcome To Party Rock"
-           className="text-center "
-         />
-       </div>
-       <div className="flex items-center justify-center text-center">
-         <Image
-           src={homePic}
-           alt="Party Rock"
-           width={200}
-           height={200}
-           priority="true"
-         />
-       </div>
-       <div className="w-full flex items-center justify-center text-center hover-underline-none">
-         <Button as={Link} to="/join" variant="white" className="text-dark hover-underline-none mx-1 rounded-lg">
-           Join a Room
-         </Button>
-         <Button as={Link} to="/create" variant="flat" className="text-white bg-spotify-green mx-1 my-2 rounded-lg hover-underline-none hover-bg-spotify">
-           Create a Room
-         </Button>
-       </div>
-     </Container>
-     </div>
+        <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-50">
+          <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg ml-2 my-2 h-100-vh w-100"
+            style={{ minWidth: '20rem' }}>
+            <div className="flex justify-center items-center my-5 w-100">
+              <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
+                <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
+              </Button>
+            </div>
+            <div className="flex items-center justify-center text-center">
+              <AnimatedText
+                text="Welcome To Party Rock"
+                className="text-center "
+              />
+            </div>
+            <div className="flex items-center justify-center text-center">
+              <Image
+                src={homePic}
+                alt="Party Rock"
+                width={200}
+                height={200}
+                priority="true"
+              />
+            </div>
+            <div className="w-full flex items-center justify-center text-center hover-underline-none">
+              <Button as={Link} to="/join" variant="white" className="text-dark hover-underline-none mx-1 rounded-lg">
+                Join a Room
+              </Button>
+              <Button as={Link} to="/create" variant="flat" className="text-white bg-spotify-green mx-1 my-2 rounded-lg hover-underline-none hover-bg-spotify">
+                Create a Room
+              </Button>
+            </div>
+          </Container>
+        </div>
+
+      </div>
     );
   };
-  
+
   const clearRoomCode = () => {
     setRoomCode("");
   };
 
   return (
     <Router>
-      <div id="root" className="w-100 d-flex justify-content-center align-items-center ">
-      {/* <NavigationBar className="h-87-vh"/> */}
+      <div id="root" className="w-100 mx-2 pt-2 pb-2 pr-2 h-100-vh overflow-x-scroll overflow-y-hidden flex justify-center align-items-center ">
+        {/* <div className="ml-2 py-y h-100-vh overflow-hidden inline-flex flex-row justify-center align-items-center w-6rem bg-white" >
+          <NavigationBar className="h-100-vh" />
+        </div> */}
         <Routes>
           <Route
             exact
