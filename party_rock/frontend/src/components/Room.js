@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
-import ArtistDetails from "./ArtistDetails"
+import NowPlaying from "./NowPlaying";
+
 import { QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
 
 
@@ -155,11 +156,31 @@ const Room = ({ leaveRoomCallback }) => {
   }
 
 
+  const playing = (props) => (
+    <div {...props} className='p-1 mr-2 flex justify-center items-center rounded bg-dark-light'>
+      <div><p className='text-white m-0'>Now Playing</p></div>
+    </div>
+  );
 
+  const lyrics = (props) => (
+    <div {...props} className='p-1 mt-2 flex justify-center items-center rounded bg-dark-light'>
+      <div><p className='text-white m-0'>Lyrics</p></div>
+    </div>
+  );
 
+  const queue = (props) => (
+    <div {...props} className='p-1 ml-2 flex justify-center items-center rounded bg-dark-light'>
+      <div><p className='text-white m-0'>Queue</p></div>
+    </div>
+  );
+  const [activeTab, setActiveTab] = useState('playing');
+
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
 
   return (
-    <div className="w-100 h-100-vh bg-black inline-flex mr-0 p-2 items-center justify-center">
+    <div className="w-100 h-100-vh bg-black inline-flex">
 
 
       <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
@@ -190,49 +211,88 @@ const Room = ({ leaveRoomCallback }) => {
         </Container>
       </div>
 
-      <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-50"
-        style={{ minWidth: '20rem' }}>
-        <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
-          {/* <div className="inline-flex mb-3 text-center justify-center items-center shadow-xl">
-              <div className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2">
-                <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
-              </div>
-              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center mx-2">
-                <LyricsIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
-              </div>
-              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center ml-2">
-                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
-              </div>
-            </div> */}
+      <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-22rem"
+        style={{ minWidth: '22rem' }}>
+        <div fluid className="flex flex-col items-start justify-start bg-dark rounded-lg my-2 h-100-vh w-100">
           <div fluid className="flex flex-col items-center justify-center w-100">
 
-            <div className="inline-flex mb-3 text-center justify-center items-center shadow-xl">
-              <div className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2">
-                <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+
+            <div className="flex h-32rem justify-center items-center flex-row shadow-top w-100">
+
+              <div className="h-4rem w-22rem shadow-30 z-2 flex justify-center items-center">
+
+                <OverlayTrigger
+                  placement="left"
+                  delay={{ show: 250, hide: 50 }}
+                  overlay={playing}
+                >
+                  <div
+                    className={`cursor-pointer justify-center mb-3 room-tabbs rounded-xl items-center mr-2 ${activeTab === 'playing' ? 'active-tabbs' : ''}`}
+                    onClick={() => handleTabClick('playing')}
+                  >
+                    <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+                  </div>
+                </OverlayTrigger>
+
+                <OverlayTrigger
+                  placement="bottom"
+                  delay={{ show: 250, hide: 50 }}
+                  overlay={lyrics}
+                >
+                  <div
+                    className={`justify-center cursor-pointer room-tabbs mb-3 rounded-xl items-center mx-2 ${activeTab === 'lyrics' ? 'active-tabbs' : ''}`}
+                    onClick={() => handleTabClick('lyrics')}
+                  >
+                    <LyricsIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+                  </div>
+                </OverlayTrigger>
+
+                <OverlayTrigger
+                  placement="right"
+                  delay={{ show: 250, hide: 50 }}
+                  overlay={queue}
+                >
+                  <div
+                    className={`justify-center cursor-pointer mb-3 room-tabbs rounded-xl items-center ml-2 ${activeTab === 'queue' ? 'active-tabbs' : ''}`}
+                    onClick={() => handleTabClick('queue')}
+                  >
+                    <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+                  </div>
+                </OverlayTrigger>
+
               </div>
-              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center mx-2">
-                <LyricsIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
-              </div>
-              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center ml-2">
-                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+
+              <div className="bg-dark rounded-lg h-32rem mb-1 w-100 z-1 overflow-y-hidden overflow-x-hidden flex justify-center items-center">
+
+                {activeTab === 'playing' && (
+                  <div className="inline-flex px-1 my-1 pt-2 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
+                    <NowPlaying {...song} />
+
+                  </div>
+                )}
+
+                {activeTab === 'lyrics' && (
+                  <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
+                    <MusicPlayer {...song} />
+
+                  </div>
+                )}
+
+                {activeTab === 'queue' && (
+                  <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
+
+                  </div>
+                )}
+
               </div>
             </div>
 
-            <div className="bg-white rounded-lg h-35rem w-100 overflow-y-hidden overflow-x-hidden flex justify-center items-center">
 
-              <div className="inline-flex h-34rem justify-center items-center flex-row overflow-y-scroll shadow-top  w-100">
-                <MusicPlayer {...song} />
-                <MusicPlayer {...song} />
-                <MusicPlayer {...song} />
-                <MusicPlayer {...song} />
-                <MusicPlayer {...song} />
-              </div>
-            </div>
           </div>
-        </Container>
+        </div>
       </div>
 
-    </div>
+    </div >
 
   );
 };
