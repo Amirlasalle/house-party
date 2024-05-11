@@ -193,31 +193,41 @@ const Room = ({ leaveRoomCallback }) => {
       <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-50"
         style={{ minWidth: '20rem' }}>
         <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
-          <div fluid className="flex flex-col items-center justify-center w-100">
-
-            <div className="inline-flex mb-3 text-center justify-center items-center ">
+          {/* <div className="inline-flex mb-3 text-center justify-center items-center shadow-xl">
               <div className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2">
                 <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
               </div>
               <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center mx-2">
-                <LyricsIcon  className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2"/>
+                <LyricsIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
               </div>
               <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center ml-2">
-                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2"/>
+                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+              </div>
+            </div> */}
+          <div fluid className="flex flex-col items-center justify-center w-100">
+
+            <div className="inline-flex mb-3 text-center justify-center items-center shadow-xl">
+              <div className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2">
+                <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+              </div>
+              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center mx-2">
+                <LyricsIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+              </div>
+              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center ml-2">
+                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
               </div>
             </div>
 
-            <div className="bg-dark rounded-lg h-30rem w-100 overflow-y-hidden overflow-x-hidden flex justify-center items-center">
-              <div className="inline-flex h-29rem justify-center items-center flex-row overflow-y-scroll w-100">
-              <MusicPlayer {...song} />
-              <MusicPlayer {...song} />
-              <MusicPlayer {...song} />
-              <MusicPlayer {...song} />
-              <MusicPlayer {...song} />
+            <div className="bg-white rounded-lg h-35rem w-100 overflow-y-hidden overflow-x-hidden flex justify-center items-center">
+
+              <div className="inline-flex h-34rem justify-center items-center flex-row overflow-y-scroll shadow-top  w-100">
+                <MusicPlayer {...song} />
+                <MusicPlayer {...song} />
+                <MusicPlayer {...song} />
+                <MusicPlayer {...song} />
+                <MusicPlayer {...song} />
               </div>
-
             </div>
-
           </div>
         </Container>
       </div>
