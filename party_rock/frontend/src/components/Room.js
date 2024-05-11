@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Col, Button, Tab, Tabs, OverlayTrigger, OverlayProps } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import CreateRoomPage from "./CreateRoomPage";
@@ -154,70 +154,76 @@ const Room = ({ leaveRoomCallback }) => {
     return renderSettings();
   }
 
+
+
+
+
   return (
-    <div className="w-100 inline-flex">
-      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 mr-2 rounded-lg h-87-vh w-100  overflow-hidden"
-        style={{ minWidth: '25rem' }}
-      >
-        <Row className="justify-center items-center my-2">
-          <div className="text-center">
-            <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <MusicPlayer {...song} />
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <Col xs={12} className="mb-1 flex flex-row items-center justify-center">
-              {roomDetails.isHost ? renderSettingsButton() : null}
-              <Button
-                variant="contained"
-                className="bg-danger rounded-lg text-white hover-bright-lg mx-2 btn-circle"
-                onClick={leaveButtonPressed}
-              >
-                <FontAwesomeIcon icon={faRightFromBracket} />
-              </Button>
-            </Col>
-          </div>
-        </Row>
-      </Container>
+    <div className="w-100 h-100-vh bg-black inline-flex mr-0 p-2 items-center justify-center">
 
 
+      <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
+        style={{ minWidth: '30rem' }}>
+        <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
+          <div fluid className="flex flex-col items-center justify-center w-100">
 
-      <Container fluid className="flex justify-center items-center bg-dark p-5 my-5 rounded-lg h-87-vh w-50  overflow-hidden"
-        style={{ minWidth: '20rem' }}
-      >
-
-        <div className="flex flex-col h-100 w-100 justify-center items-center">
-          <Tabs
-            defaultActiveKey="info"
-            id="noanim-tab-example"
-            variant='tabs'
-            className="tabs bg-dark flex-wrap inline-flex flex-row justify-center  items-center h-11-vh p-2"
-          >
-            <Tab eventKey="info" title={<PlayingIcon />} className="justify-center tab">
-            <div className="tab-content overflow-hidden">
-              <div className="h-100-vh">
-              <div className="bg-dark px-3 overflow-y-scroll w-100 tab-body tab py-5  justify-center">
-                <ArtistDetails />
-                <ArtistDetails />
-                <ArtistDetails />
-                <ArtistDetails />
-                <ArtistDetails />
-                <ArtistDetails />
+            <div className="flex text-center justify-center items-center ">
+              <h5 className="text-center justify-center items-center  font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <MusicPlayer {...song} />
+            </div>
+            <div className="w-100 flex flex-col items-center justify-center">
+              <div className="mb-1 flex flex-row items-center justify-center">
+                {roomDetails.isHost ? renderSettingsButton() : null}
+                <Button
+                  variant="contained"
+                  className="bg-danger rounded-lg text-white hover-bright-lg mx-2 btn-circle"
+                  onClick={leaveButtonPressed}
+                >
+                  <FontAwesomeIcon icon={faRightFromBracket} />
+                </Button>
               </div>
-              </div>
-              </div>
-            </Tab>
-            <Tab eventKey="lyrics" title={<LyricsIcon />} className="bg-dark mb-5 tab">
-            </Tab>
-            <Tab eventKey="queue" title={<QueueIcon />} className="bg-dark mb-5 tab">
-            </Tab>
-          </Tabs>
-        </div>
+            </div>
 
-      </Container>
+          </div>
+        </Container>
+      </div>
+
+      <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-50"
+        style={{ minWidth: '20rem' }}>
+        <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
+          <div fluid className="flex flex-col items-center justify-center w-100">
+
+            <div className="inline-flex mb-3 text-center justify-center items-center ">
+              <div className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2">
+                <PlayingIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2" />
+              </div>
+              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center mx-2">
+                <LyricsIcon  className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2"/>
+              </div>
+              <div className="justify-center cursor-pointer room-tabbs rounded-xl items-center ml-2">
+                <QueueIcon className="cursor-pointer justify-center room-tabbs rounded-xl items-center mr-2"/>
+              </div>
+            </div>
+
+            <div className="bg-dark rounded-lg h-30rem w-100 overflow-y-hidden overflow-x-hidden flex justify-center items-center">
+              <div className="inline-flex h-29rem justify-center items-center flex-row overflow-y-scroll w-100">
+              <MusicPlayer {...song} />
+              <MusicPlayer {...song} />
+              <MusicPlayer {...song} />
+              <MusicPlayer {...song} />
+              <MusicPlayer {...song} />
+              </div>
+
+            </div>
+
+          </div>
+        </Container>
+      </div>
 
     </div>
+
   );
 };
 

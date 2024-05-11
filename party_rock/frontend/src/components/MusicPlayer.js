@@ -58,7 +58,7 @@ const MusicPlayer = (props) => {
 
   return (
     <>
-      <div className="w-100 pl-0 d-flex justify-content-center">
+      <div className="w-100 pl-0 d-flex justify-center">
         <p className="text-default pl-0 my-0 font-light smaller">
           Votes to skip: {props.votes} / {props.votes_required}
         </p>
@@ -66,7 +66,7 @@ const MusicPlayer = (props) => {
       <Card className="my-1 bg-spotify-green overflow-hidden rounded-lg"
        style={{ width: '18rem' }}
       >
-        <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-content-center">
+        <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-center">
           <Image
             src={`${props.image_url ? props.image_url : Oig2}`}
             width="85%"

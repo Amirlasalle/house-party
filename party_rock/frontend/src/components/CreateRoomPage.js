@@ -11,7 +11,7 @@ const CreateRoomPage = ({
   guestCanPause: initialGuestCanPause = true,
   update = false,
   roomCode = null,
-  updateCallback = () => {},
+  updateCallback = () => { },
 }) => {
   const [guestCanPause, setGuestCanPause] = useState(initialGuestCanPause);
   const [votesToSkip, setVotesToSkip] = useState(initialVotesToSkip);
@@ -80,7 +80,7 @@ const CreateRoomPage = ({
           to="/"
           as={Link}
         >
-         <FontAwesomeIcon icon={faArrowLeft} /> Back
+          <FontAwesomeIcon icon={faArrowLeft} /> Back
         </Button>
       </div>
     );
@@ -103,54 +103,64 @@ const CreateRoomPage = ({
   const title = update ? "Update Room" : "Create a Room";
 
   return (
-    <Container fluid className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100">
-        <div className="flex flex-col justify-center items-center text-center my-5 h-87-vh w-100">
-          {errorMsg && (
-            <Alert variant="danger" className="text-center items-center justify-center" onClose={() => setErrorMsg("")} dismissible>
-              {errorMsg}
-            </Alert>
-          )}
-          {successMsg && (
-            <Alert variant="success" className="text-center items-center justify-center" onClose={() => setSuccessMsg("")} dismissible>
-              {successMsg}
-            </Alert>
-          )}
-        <div>
-          <h4 className="text-white">{title}</h4>
-        </div>
-        <div>
-          <Form>
-            <FormGroup>
-              <FormLabel className="text-white">Guest Control of Playback State</FormLabel>
-              <div className="d-flex mb-2">
-                <FormControl
-                  as="select"
-                  className="bg-dark text-white"
-                  value={guestCanPause.toString()}
-                  onChange={handleGuestCanPauseChange}
-                >
-                  <option value="true">Play/Pause</option>
-                  <option value="false">No Control</option>
-                </FormControl>
-              </div>
-            </FormGroup>
-            <FormGroup className="mb-2">
-              <FormLabel className="text-white">Votes Required To Skip Song</FormLabel>
-              <FormControl
-                type="number"
-                className="bg-dark text-white"
-                value={votesToSkip}
-                onChange={handleVotesChange}
-                min="1"
-              />
-            </FormGroup>
-          </Form>
-        </div>
-        <div className="d-flex flex-column align-items-center justify-content-center bg-dark rounded-lg ml-4">
-          {update ? renderUpdateButtons() : renderCreateButtons()}
-        </div>
+    <div className="w-100 h-100-vh bg-black inline-flex">
+
+
+      <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
+        style={{ minWidth: '30rem' }}>
+        <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
+          <div fluid className="flex flex-col items-center justify-center w-100">
+
+            {errorMsg && (
+              <Alert variant="danger" className="text-center items-center justify-center" onClose={() => setErrorMsg("")} dismissible>
+                {errorMsg}
+              </Alert>
+            )}
+            {successMsg && (
+              <Alert variant="success" className="text-center items-center justify-center" onClose={() => setSuccessMsg("")} dismissible>
+                {successMsg}
+              </Alert>
+            )}
+            <div>
+              <h4 className="text-white">{title}</h4>
+            </div>
+            <div>
+              <Form>
+                <FormGroup>
+                  <FormLabel className="text-white">Guest Control of Playback State</FormLabel>
+                  <div className="d-flex mb-2">
+                    <FormControl
+                      as="select"
+                      className="bg-dark text-white"
+                      value={guestCanPause.toString()}
+                      onChange={handleGuestCanPauseChange}
+                    >
+                      <option value="true">Play/Pause</option>
+                      <option value="false">No Control</option>
+                    </FormControl>
+                  </div>
+                </FormGroup>
+                <FormGroup className="mb-2">
+                  <FormLabel className="text-white">Votes Required To Skip Song</FormLabel>
+                  <FormControl
+                    type="number"
+                    className="bg-dark text-white"
+                    value={votesToSkip}
+                    onChange={handleVotesChange}
+                    min="1"
+                  />
+                </FormGroup>
+              </Form>
+            </div>
+            <div className="d-flex flex-column align-items-center justify-content-center bg-dark rounded-lg ml-4">
+              {update ? renderUpdateButtons() : renderCreateButtons()}
+            </div>
+
+          </div>
+        </Container>
       </div>
-    </Container>
+
+    </div>
   );
 };
 

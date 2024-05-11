@@ -57,15 +57,16 @@ function NavigationBar({ leaveRoomCallback }) {
 
     return (
 
-        <>
-            <div className="inline-flex flex-row items-start justify-center bg-black h-20-vh"
+      
+            <div className="inline-flex flex-row items-start justify-center bg-black p-2 mx-2 h-100-vh"
                 style={{ width: '5rem' }}>
-                <Container fluid className="flex flex-col items-center justify-center bg-dark h-20-vh rounded-lg"
-                    style={{ width: '5rem' }}>
+                <Container fluid className="flex flex-col items-center justify-center bg-dark h-20 mb-1 w-5rem mx-2 rounded-lg"
+                  >
                     <div fluid className="flex flex-col items-center justify-center">
 
-                        <div className="inline-flex flex-col items-center justify-center text-2xl bg-dark rounded-lg text-white">
-                            <div className="flex items-center justify-center text-2xl  rounded-lg text-white">
+                        <div className="inline-flex flex-col items-center justify-center text-2xl  bg-dark rounded-lg text-white">
+                            <div className="flex items-center justify-center text-2xl rounded-lg text-white"
+                            style={{ width: '5rem' }}>
                                 <OverlayTrigger
                                     placement="right"
                                     delay={{ show: 250, hide: 50 }}
@@ -91,14 +92,10 @@ function NavigationBar({ leaveRoomCallback }) {
 
                     </div>
                 </Container>
-            </div>
-
-
-            <div className="inline-flex flex-row items-center justify-center bg-black h-80-vh"
-                style={{ width: '5rem' }}>
-                <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg h-75-vh mb-2"
+     
+                <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg h-79 mb-2"
                     style={{ width: '5rem' }}>
-                    <div fluid className="flex flex-col items-center justify-center w-100">
+                    <div fluid className="flex flex-col items-center justify-center h-100">
                         <OverlayTrigger
                             placement="right"
                             delay={{ show: 250, hide: 50 }}
@@ -108,6 +105,7 @@ function NavigationBar({ leaveRoomCallback }) {
                                 <FontAwesomeIcon icon={faUsers} onClick={handleShowOffcanvas} className="justify-center items-center text-default hover-text-white cursor-pointer text-2xl" />
                             </div>
                         </OverlayTrigger>
+                        
                         <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
                             <div>
                                 <div className=' justify-center items-center flex flex-col'>
@@ -149,7 +147,7 @@ function NavigationBar({ leaveRoomCallback }) {
                 </Offcanvas>
             </div>
 
-        </>
+     
     );
 }
 

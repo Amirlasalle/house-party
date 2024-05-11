@@ -172,6 +172,35 @@ body {
   min-height: 100vh;
 }
 
+.room-tabbs {
+  box-sizing: border-box !important;
+  -webkit-tap-highlight-color: transparent !important;
+  border: solid 1px transparent !important;
+  border-radius: 9999px !important;
+  background-color: #ffffff12 !important;
+  color: #fff !important;
+  transition: background-color 0.2s ease 0s, color 0.2s ease 0s !important;
+  display: inline-flex !important;
+  min-inline-size: 0px !important;
+  min-block-size: 32px !important;
+  -webkit-box-align: center !important;
+  align-items: center !important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-block-start: 4px !important;
+  padding-block-end: 4px !important;
+  padding-inline-start: 12px !important;
+  padding-inline-end: 12px !important;
+}
+
+.room-tabbs:hover {
+  background-color: #454545 !important;
+  border: solid 1px transparent !important;
+} 
+
+
 
 
 .tabs {
@@ -251,9 +280,8 @@ body {
   height: 35rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  border: 1px solid #bdbdbd8e;
-  background: #ffffff;
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border: 1px solid transparent;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -324,11 +352,19 @@ body {
 .map-btn:hover {
   box-shadow: 5px 5px 5px 0 rgba(51, 51, 51, 0.307), 0 1px 7px 0 rgba(51, 51, 51, 0.365) !important;
 }
-
+.z-9999 {
+  z-index: 9999 !important;
+}
 .mar {
   margin-bottom: 116px;
 }
+ .mar-right {
+  margin-right: 7rem;
+}
 
+.mar-left {
+  margin-left: 6rem !important;
+}
 .go-back {
   margin-top: 108px;
   width: 120px;
@@ -3289,6 +3325,16 @@ h-25-w-25 {
   height: 100% !important;
 }
 
+.h-80 {
+  height: 80% !important;
+}
+.h-79 {
+  height: 79% !important;
+}
+.h-78 {
+  height: 78% !important;
+}
+
 .h-75 {
   height: 75% !important;
 }
@@ -3299,6 +3345,10 @@ h-25-w-25 {
 
 .h-25 {
   height: 25% !important;
+}
+
+.h-20 {
+  height: 20% !important;
 }
 
 .max-w-100 {
@@ -4814,6 +4864,10 @@ h-25-w-25 {
 
 .pl-2 {
   padding-left: 0.625rem !important;
+}
+
+.pl-025 {
+  padding-left: 0.8125rem !important;
 }
 
 .pl-3 {
@@ -6711,6 +6765,10 @@ h-25-w-25 {
 
 .hover-border-link:hover {
   border-color: #1b89bc !important;
+}
+
+.border-2 {
+  border: 3px solid black !important ;
 }
 
 /* scale transform */

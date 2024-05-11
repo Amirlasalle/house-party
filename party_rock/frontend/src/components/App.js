@@ -21,9 +21,11 @@ export default class App extends Component {
 
             <div className="h-100-vh w-100 overflow-x-scroll overflow-y-hidden">
               <div className="h-100-vh w-100 inline-flex overflow-hidden">
-                <div className="py-2 h-100-vh overflow-hidden inline-flex flex-row justify-center items-center pl-2 pr-1 w-6rem bg-black" >
+              <div className="h-100-vh inline-flex flex-row justify-center items-center pl-2 w-5rem bg-black " >
+                
                   <NavigationBar className="h-100-vh" />
-                </div>
+              </div>
+             
                 <HomePage className="h-100-vh" />
               </div>
             </div>
