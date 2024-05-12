@@ -57,9 +57,9 @@ const NowPlaying = (props) => {
     };
 
     return (
-       <div className="p-1">
+        <div className="p-1 justify-center items-center flex flex-col">
             <div className="w-100 pl-0 flex flex-col items-start justify-center">
-                <div className="mt-2 rounded-lg d-flex justify-center">
+                <div className="mt-2 rounded-lg flex justify-center">
                     <Image
                         src={`${props.image_url ? props.image_url : Oig2}`}
                         width="100%"
@@ -70,12 +70,12 @@ const NowPlaying = (props) => {
                 </div>
 
                 <div className="pl-0 mt-2 text-left">
-                <div className="max-w-100 flex items-start justify-start text-left">
-                    <h1 className="pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h1>
+                    <div className="max-w-100 flex items-start justify-start text-left">
+                        <h3 className="pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h3>
                     </div>
                     <div className="max-w-100 flex items-start justify-start">
 
-                        <h5 className={`w-auto flex items-center justify-center pl-0 px-6  hover-text-white ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</h5>
+                        <h6 className={`w-auto flex items-center justify-center pl-0 hover-text-white ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</h6>
                     </div>
                 </div>
 
@@ -83,24 +83,32 @@ const NowPlaying = (props) => {
             </div>
 
 
-            <Card className="my-1 bg-spotify-green overflow-hidden rounded-lg"
-                style={{ width: '18rem' }}
-            >
+            <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
 
+                <div className="pl-3 flex flex-col items-start justify-start text-left">
+                    <h5 className="mt-2 text-white font-semibold">{`${props.artist ? "About the artist" : " "}`}</h5>
 
-                <div className="pl-0 text-center">
-                    <h6 className="mt-2 pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h6>
+                    <div className="mt-2 rounded-full flex items-start justify-start">
+                        <Image
+                            src={`${props.image_url ? props.image_url : Oig2}`}
+                            width="40%"
+                            height="40%"
+                            alt={Image}
+                            className="rounded-full"
+                        />
+                    </div>
+
                     <div className="max-w-100 flex items-center justify-center">
 
-                        <p className={`w-auto flex items-center justify-center small pl-0 px-6  hover-text-white ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</p>
+                        <h5 className="mt-2 text-white font-semibold">{`${props.artist ? props.artist : " "}`}</h5>
                     </div>
 
 
 
                 </div>
 
-            </Card>
-       </div>
+            </div>
+        </div>
     );
 };
 

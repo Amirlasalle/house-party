@@ -211,15 +211,15 @@ const Room = ({ leaveRoomCallback }) => {
         </Container>
       </div>
 
-      <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-22rem"
-        style={{ minWidth: '22rem' }}>
+      <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-18rem"
+        style={{ minWidth: '18rem' }}>
         <div fluid className="flex flex-col items-start justify-start bg-dark rounded-lg my-2 h-100-vh w-100">
           <div fluid className="flex flex-col items-center justify-center w-100">
 
 
             <div className="flex h-32rem justify-center items-center flex-row shadow-top w-100">
 
-              <div className="h-4rem w-22rem shadow-30 z-2 flex justify-center items-center">
+              <div className="h-4rem w-18rem shadow-30 z-2 flex justify-center items-center">
 
                 <OverlayTrigger
                   placement="left"
