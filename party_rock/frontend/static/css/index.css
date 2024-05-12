@@ -100,6 +100,8 @@ body {
   font-weight: bold;
 }
 
+
+
 .font-light {
   font-weight: lighter;
   color: rgba(67, 67, 67, 0.658);
@@ -374,6 +376,10 @@ body {
 
 .hover-underline-none:hover {
   text-decoration: none !important;
+}
+.hover-underline:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
 }
 
 .map-btn {
@@ -5281,6 +5287,10 @@ h-25-w-25 {
   font-size: 1.125rem !important;
 }
 
+.text-xlg {
+  font-size: 1.1875rem !important;
+}
+
 .text-xl {
   font-size: 1.25rem !important;
 }
@@ -5328,6 +5338,43 @@ h-25-w-25 {
 .text-12xl {
   font-size: 10rem !important;
 }
+
+.font-thin {
+  font-weight: 100 !important;
+}
+
+.font-extralight {
+  font-weight: 200 !important;
+}
+
+.font-light {
+  font-weight: 300 !important;
+}
+
+.font-normal {
+  font-weight: 400 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.font-extrabold {
+  font-weight: 800 !important;
+}
+
+.font-black {
+  font-weight: 900 !important;
+}
+
 
 /* text-wrap */
 .text-ellipsis {

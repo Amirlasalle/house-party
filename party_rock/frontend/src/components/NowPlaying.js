@@ -71,11 +71,11 @@ const NowPlaying = (props) => {
 
                 <div className="pl-0 mt-2 text-left">
                     <div className="max-w-100 flex items-start justify-start text-left">
-                        <h3 className="pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h3>
+                        <h4 className="pl-0 text-white font-semibold text-xlg">{`${props.title ? props.title : "Nothing is being played"}`}</h4>
                     </div>
                     <div className="max-w-100 flex items-start justify-start">
 
-                        <h6 className={`w-auto flex items-center justify-center pl-0 hover-text-white ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</h6>
+                        <h6 className={`w-auto flex font-light items-center justify-center pl-0 hover-text-white hover-underline ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</h6>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@ const NowPlaying = (props) => {
             <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
 
                 <div className="pl-3 flex flex-col items-start justify-start text-left">
-                    <h5 className="mt-2 text-white font-semibold">{`${props.artist ? "About the artist" : " "}`}</h5>
+                    <h6 className="mt-2 text-white font-medium">{`${props.artist ? "About the artist" : " "}`}</h6>
 
                     <div className="mt-2 rounded-full flex items-start justify-start">
                         <Image
@@ -100,7 +100,7 @@ const NowPlaying = (props) => {
 
                     <div className="max-w-100 flex items-center justify-center">
 
-                        <h5 className="mt-2 text-white font-semibold">{`${props.artist ? props.artist : " "}`}</h5>
+                        <h6 className="mt-2 text-white font-medium">{`${props.artist ? props.artist : " "}`}</h6>
                     </div>
 
 
