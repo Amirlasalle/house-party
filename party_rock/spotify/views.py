@@ -63,7 +63,7 @@ class CurrentSong(APIView):
         else:
             return Response({}, status=status.HTTP_404_NOT_FOUND)
         host = room.host
-        endpoint = "player/currently-playing"
+        endpoint = "me/player/currently-playing"
         response = execute_spotify_api_request(host, endpoint)
         
         if 'error' in response or 'item' not in response:
@@ -178,3 +178,18 @@ class SkipSong(APIView):
 
         
         return Response({}, status=status.HTTP_204_NO_CONTENT)
+    
+class GetUserQueue(APIView):
+    def get(self, request, format=None):
+        user_tokens = get_user_tokens(request.session.session_key)
+        if user_tokens:
+            access_token = user_tokens.access_token
+            endpoint = "me/player/queue"
+            response = execute_spotify_api_request(request.session.session_key, endpoint)
+
+            if 'error' in response:
+                return Response({'error': 'Failed to fetch queue'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(response, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)

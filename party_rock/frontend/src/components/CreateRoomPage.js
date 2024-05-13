@@ -109,7 +109,7 @@ const CreateRoomPage = ({
       <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
         style={{ minWidth: '30rem' }}>
         <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
-          <div fluid className="flex flex-col items-center justify-center w-100">
+          <div className="flex flex-col items-center justify-center w-100">
 
             {errorMsg && (
               <Alert variant="danger" className="text-center items-center justify-center" onClose={() => setErrorMsg("")} dismissible>

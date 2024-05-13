@@ -62,7 +62,7 @@ function NavigationBar({ leaveRoomCallback }) {
                 style={{ width: '5rem' }}>
                 <Container fluid className="flex flex-col items-center justify-center bg-dark h-20 mb-1 w-5rem mx-2 rounded-lg"
                   >
-                    <div fluid className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center">
 
                         <div className="inline-flex flex-col items-center justify-center text-2xl  bg-dark rounded-lg text-white">
                             <div className="flex items-center justify-center text-2xl rounded-lg text-white"
@@ -95,7 +95,7 @@ function NavigationBar({ leaveRoomCallback }) {
      
                 <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg h-79 mb-2"
                     style={{ width: '5rem' }}>
-                    <div fluid className="flex flex-col items-center justify-center h-100">
+                    <div  className="flex flex-col items-center justify-center h-100">
                         <OverlayTrigger
                             placement="right"
                             delay={{ show: 250, hide: 50 }}

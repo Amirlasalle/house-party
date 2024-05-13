@@ -33,6 +33,7 @@ const NowPlaying = (props) => {
         fetch("/spotify/prev", requestOptions);
     };
 
+
     const skipSong = () => {
         const requestOptions = {
             method: "POST",

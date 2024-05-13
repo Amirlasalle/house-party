@@ -6,7 +6,7 @@ import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg
 import CreateRoomPage from "./CreateRoomPage";
 import MusicPlayer from "./MusicPlayer";
 import NowPlaying from "./NowPlaying";
-
+import Queue from "./Queue"
 import { QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
 
 
@@ -186,7 +186,7 @@ const Room = ({ leaveRoomCallback }) => {
       <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
         style={{ minWidth: '30rem' }}>
         <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
-          <div fluid className="flex flex-col items-center justify-center w-100">
+          <div className="flex flex-col items-center justify-center w-100">
 
             <div className="flex text-center justify-center items-center ">
               <h5 className="text-center justify-center items-center  font-semibold pl-0 text-white">Room Code: {roomCode}</h5>
@@ -213,8 +213,8 @@ const Room = ({ leaveRoomCallback }) => {
 
       <div className="flex flex-col items-center ml-2 mr-0 justify-center bg-black rounded-lg h-100-vh w-18rem"
         style={{ minWidth: '18rem' }}>
-        <div fluid className="flex flex-col items-start justify-start bg-dark rounded-lg my-2 h-100-vh w-100">
-          <div fluid className="flex flex-col items-center justify-center w-100">
+        <div className="flex flex-col items-start justify-start bg-dark rounded-lg my-2 h-100-vh w-100">
+          <div className="flex flex-col items-center justify-center w-100">
 
 
             <div className="flex h-32rem justify-center items-center flex-row shadow-top w-100">
@@ -280,7 +280,7 @@ const Room = ({ leaveRoomCallback }) => {
 
                 {activeTab === 'queue' && (
                   <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
-
+                    <Queue />
                   </div>
                 )}
 

@@ -38,7 +38,7 @@ function HomePage() {
         <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
           style={{ minWidth: '30rem' }}>
           <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
-            <div fluid className="flex flex-col items-center justify-center w-100">
+            <div className="flex flex-col items-center justify-center w-100">
               <div className="flex justify-center items-center my-5 w-100">
                 <Button as={Link} to="/info" className="flex justify-center items-center text-white btn-circle bg-black">
                   <FontAwesomeIcon icon={faCircleInfo} className="justify-center items-center text-spotify-green" />
