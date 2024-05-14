@@ -1427,9 +1427,22 @@ body {
   filter: brightness(100%);
 }
 
+.multi-line-ellipsis {
+  word-wrap: break-word !important;
+  color: #fff !important;
+  overflow: hidden !important; 
+  display: -webkit-box !important; 
+  -webkit-line-clamp: 3 !important; 
+  -webkit-box-orient: vertical !important; 
+} 
 
-
-
+.text-ellipsis-overflow {
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  flex: 1 1 auto;
+  
+}
 
 .venture-text {
   font-family: 'Poppins', sans-serif;
@@ -6255,6 +6268,10 @@ h-25-w-25 {
 
 .hover-bg-dark-light:hover {
   background-color: #3a3a3a !important;
+}
+
+.hover-bg-ffffff12:hover {
+  background-color: #ffffff12 !important;
 }
 
 .hover-bg-clear:hover {
