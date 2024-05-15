@@ -1427,21 +1427,22 @@ body {
   filter: brightness(100%);
 }
 
-.multi-line-ellipsis {
-  word-wrap: break-word !important;
-  color: #fff !important;
-  overflow: hidden !important; 
-  display: -webkit-box !important; 
-  -webkit-line-clamp: 3 !important; 
-  -webkit-box-orient: vertical !important; 
-} 
+.ellipsis-line {
+overflow-wrap: anywhere;
+outline: none;
+text-decoration: none;
+box-sizing: border-box;
+-webkit-tap-highlight-color: transparent;
+margin-block: 0px;
 
-.text-ellipsis-overflow {
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  flex: 1 1 auto;
-  
+}
+
+.elipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
 }
 
 .venture-text {
@@ -3253,8 +3254,7 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
   font-family: 'Poppins', sans-serif;
   margin: 0 0 0.5rem;
   line-height: 1.25;
@@ -3286,6 +3286,7 @@ h6 {
 
 p {
   font-size: 0.85rem;
+  margin: 0 0 0.05rem;
 }
 
 ul,

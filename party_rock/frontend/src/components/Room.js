@@ -280,7 +280,7 @@ const Room = ({ leaveRoomCallback }) => {
 
                 {activeTab === 'queue' && (
                   <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
-                    <Queue />
+                    <Queue {...song} />
                   </div>
                 )}
 

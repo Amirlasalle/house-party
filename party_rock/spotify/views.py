@@ -75,7 +75,6 @@ class CurrentSong(APIView):
         album_cover = item.get('album').get('images')[0].get('url')
         artist_playlist = item.get('playlist')
         full_album = item.get('album')
-        upcoming_shows = item.get('show')
         is_playing = response.get('is_playing')
         song_id = item.get('id')
 
@@ -99,7 +98,6 @@ class CurrentSong(APIView):
             'is_playing': is_playing,
             'playlist': artist_playlist,
             'album': full_album,
-            'show':upcoming_shows,
             'votes': votes,
             'votes_required': room.votes_to_skip,
             'id': song_id
@@ -179,17 +177,53 @@ class SkipSong(APIView):
         
         return Response({}, status=status.HTTP_204_NO_CONTENT)
     
+
 class GetUserQueue(APIView):
     def get(self, request, format=None):
-        user_tokens = get_user_tokens(request.session.session_key)
-        if user_tokens:
-            access_token = user_tokens.access_token
-            endpoint = "me/player/queue"
-            response = execute_spotify_api_request(request.session.session_key, endpoint)
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+        
+        if not room:
+            return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        host = room.host
+        endpoint = "me/player/queue"
+        response = execute_spotify_api_request(host, endpoint)
+        
+        if 'error' in response or 'queue' not in response:
+            return Response({'error': 'Failed to fetch queue'}, status=status.HTTP_204_NO_CONTENT)
+        
+        currently_playing = response.get('currently_playing')
+        queue = response.get('queue')
 
-            if 'error' in response:
-                return Response({'error': 'Failed to fetch queue'}, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                return Response(response, status=status.HTTP_200_OK)
+        if currently_playing:
+          
+            pass
+
+        if queue:
+         
+            queue_data = []
+            for item in queue:
+             
+                name = item.get('name')
+                artist_string = ", ".join(artist.get('name') for artist in item.get('artists'))
+                duration = item.get('duration_ms')
+                album_cover = item.get('album').get('images')[0].get('url')
+                is_playing = item.get('is_playing')
+                song_id = item.get('id')
+                votes = Vote.objects.filter(room=room, song_id=song_id).count()
+                
+             
+                queue_data.append({
+                    'name': name,
+                    'artist': artist_string,
+                    'duration': duration,
+                    'image_url': album_cover,
+                    'is_playing': is_playing,
+                    'votes': votes,
+                    'id': song_id
+                })
+
+            return Response(queue_data, status=status.HTTP_200_OK)
         else:
-            return Response({'error': 'User not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'error': 'Queue is empty'}, status=status.HTTP_204_NO_CONTENT)
