@@ -65,20 +65,12 @@ const Queue = () => {
                                     />
                                 </div>
                             </li>
-                            <li className='p-1 my-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
+                            <li className='p-1 mt-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
                                 <div className="ml-1 flex justify-start items-center">
                                     <div className="bg-ffffff12 w-3rem h-3rem rounded-lg"
                                     />
                                 </div>
                             </li>
-                            <li className='p-1 my-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <div className="bg-ffffff12 w-3rem h-3rem rounded-lg"
-                                    />
-                                </div>
-                            </li>
-                            <br></br>
-                            <br></br>
                         </ul>
                     </div>
                 </div>

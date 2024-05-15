@@ -64,7 +64,7 @@ const MusicPlayer = (props) => {
         </p>
       </div>
       <Card className="my-1 bg-spotify-green overflow-hidden rounded-lg"
-       style={{ width: '18rem' }}
+        style={{ width: '18rem' }}
       >
         <div className="my-2 bg-spotify-green  rounded-lg d-flex justify-center">
           <Image
@@ -80,40 +80,40 @@ const MusicPlayer = (props) => {
           <h6 className="mt-2 pl-0 text-white font-semibold">{`${props.title ? props.title : "Nothing is being played"}`}</h6>
           <div className="max-w-100 flex items-center justify-center">
 
-          <p className={`w-auto flex items-center justify-center small pl-0 px-6  hover-text-white ${props.artist ? 'text-default' : 'text-black' }`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 " }`}</p>
+            <p className={`w-auto flex items-center justify-center small pl-0 px-6  hover-text-white ${props.artist ? 'text-default' : 'text-black'}`}>{`${props.artist ? props.artist : "Spotify premium is needed to access playback controlls 😊 "}`}</p>
           </div>
 
           <div className="inline-flex flex-row justify-center items-center my-2">
-           
-            <FontAwesomeIcon onClick={() => prevSong()}   icon={faBackwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" />
-       <div className="flex items-center justify-center text-center">
-            <div
-              className={`mx-5 mt-0 flex justify-center items-center text-white btn-circle bg-white cursor-pointer ${isClicked ? "hover-shrink" : "hover-grow"}`}
-              onClick={() => {
-                props.is_playing ? (pauseSong(), handleClick()) : (playSong(), handleClick());
-              }}
-              style={{
-                ...handleClickShrink(),
-                transition: "transform 0.3s ease",
-              }}
-            >
-              {props.is_playing ? (
-               <FontAwesomeIcon icon={faPause}  className="text-black text-center items-center justify-center" />
-              ) : (
-                <FontAwesomeIcon icon={faPlay} className="text-black text-center items-center justify-center" />
-              )}
+
+            <FontAwesomeIcon onClick={() => prevSong()} icon={faBackwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" />
+            <div className="flex items-center justify-center text-center">
+              <div
+                className={`mx-5 mt-0 flex justify-center items-center text-white btn-circle bg-white cursor-pointer ${isClicked ? "hover-shrink" : "hover-grow"}`}
+                onClick={() => {
+                  props.is_playing ? (pauseSong(), handleClick()) : (playSong(), handleClick());
+                }}
+                style={{
+                  ...handleClickShrink(),
+                  transition: "transform 0.3s ease",
+                }}
+              >
+                {props.is_playing ? (
+                  <FontAwesomeIcon icon={faPause} className="text-black text-center items-center justify-center" />
+                ) : (
+                  <FontAwesomeIcon icon={faPlay} className="text-black text-center items-center justify-center" />
+                )}
+              </div>
             </div>
-            </div>
-          
-            <FontAwesomeIcon onClick={() => skipSong()}  icon={faForwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" fontSize="large" />
-          
-            
-          </div> 
-     
-       
+
+            <FontAwesomeIcon onClick={() => skipSong()} icon={faForwardStep} className="text-xl justify-center items-center text-default hover-text-white  cursor-pointer" fontSize="large" />
+
+
+          </div>
+
+
         </div>
-       
-       <ProgressBar variant="light"  style={{ height: '2.5px' }} now={songProgress} />
+
+        <ProgressBar variant="light" style={{ height: '2.5px' }} now={songProgress} />
       </Card>
     </>
   );

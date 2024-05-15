@@ -103,10 +103,10 @@ const CreateRoomPage = ({
   const title = update ? "Update Room" : "Create a Room";
 
   return (
-    <div className="w-100 h-100-vh bg-black inline-flex">
+    <div className="w-100 h-100-vh inline-flex">
 
 
-      <div className="flex flex-col items-center justify-center bg-black rounded-lg h-100-vh w-100"
+      <div className="flex flex-col items-center justify-center rounded-lg h-100-vh w-100"
         style={{ minWidth: '30rem' }}>
         <Container fluid className="flex flex-col items-center justify-center bg-dark rounded-lg my-2 h-100-vh w-100">
           <div className="flex flex-col items-center justify-center w-100">
