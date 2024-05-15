@@ -1,184 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import { Container, Row, Col, Button, Tab, Tabs, OverlayTrigger, OverlayProps } from "react-bootstrap";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faGear, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
-// import CreateRoomPage from "./CreateRoomPage";
-// import MusicPlayer from "./MusicPlayer";
-// import NowPlaying from "./NowPlaying";
-// import Queue from "./Queue"
-// import { QueueIcon, PlayingIcon, PlayingIconTwo, LyricsIcon } from "./Icons.js"
-
-
-
-// const playing = (props) => (
-//   <div {...props} className='p-1 mr-2 flex justify-center items-center rounded bg-dark-light'>
-//     <div><p className='text-white m-0'>Now Playing</p></div>
-//   </div>
-// );
-
-// const lyrics = (props) => (
-//   <div {...props} className='p-1 mt-2 flex justify-center items-center rounded bg-dark-light'>
-//     <div><p className='text-white m-0'>Lyrics</p></div>
-//   </div>
-// );
-
-// const queue = (props) => (
-//   <div {...props} className='p-1 ml-2 flex justify-center items-center rounded bg-dark-light'>
-//     <div><p className='text-white m-0'>Queue</p></div>
-//   </div>
-// );
-
-
-// const Room = ({ leaveRoomCallback }) => {
-//   const [roomDetails, setRoomDetails] = useState({
-//     votesToSkip: 2,
-//     guestCanPause: false,
-//     isHost: false,
-//     spotifyAuthenticated: false,
-//     song: {},
-//   });
-//   const [showSettings, setShowSettings] = useState(false);
-//   const { roomCode } = useParams();
-//   const navigate = useNavigate();
-//   const [song, setSong] = useState(null);
-
-
-//   const getRoomDetails = () => {
-//     fetch("/api/get-room" + "?code=" + roomCode)
-//       .then((response) => {
-//         if (!response.ok) {
-//           leaveRoomCallback();
-//           navigate("/");
-//         }
-//         return response.json();
-//       })
-//       .then((data) => {
-//         setRoomDetails({
-//           votesToSkip: data.votes_to_skip,
-//           guestCanPause: data.guest_can_pause,
-//           isHost: data.is_host,
-//         });
-//         if (data.is_host) {
-//           authenticateSpotify();
-//         }
-//       });
-//   };
-
-
-//   const authenticateSpotify = () => {
-//     fetch("/spotify/is-authenticated")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setRoomDetails((prevState) => ({
-//           ...prevState,
-//           spotifyAuthenticated: data.status,
-//         }));
-//         console.log(data.status);
-//         if (!data.status) {
-//           fetch("/spotify/get-auth-url")
-//             .then((response) => response.json())
-//             .then((data) => {
-//               window.location.replace(data.url);
-//             });
-//         }
-//       });
-//   };
-
-//   const getCurrentSong = () => {
-//     fetch("/spotify/current-song")
-//       .then((response) => {
-//         if (!response.ok) {
-//           return {};
-//         } else {
-//           return response.json();
-//         }
-//       })
-//       .then((data) => {
-//         setSong(data);
-//         console.log(data);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching current song:", error);
-//       });
-//   };
-
-
-//   useEffect(() => {
-//     getRoomDetails();
-//     const interval = setInterval(getCurrentSong, 1000);
-//     return () => clearInterval(interval);
-//   }, []);
-
-
-
-//   const leaveButtonPressed = () => {
-//     const requestOptions = {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//     };
-//     fetch("/api/leave-room", requestOptions).then((_response) => {
-//       leaveRoomCallback();
-//       navigate("/");
-//     });
-//   };
-
-//   const updateShowSettings = (value) => {
-//     setShowSettings(value);
-//   };
-
-//   const renderSettings = () => {
-//     return (
-//       <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-hidden">
-//         <div className="justify-content-center align-items-center">
-//           <div className="flex flex-col items-center justify-center">
-//             <div
-//               className="update-button items-center justify-center rounded-full cursor-pointer text-white"
-//               onClick={() => updateShowSettings(false)}
-//             >
-//               <FontAwesomeIcon icon={faXmark} />
-//             </div>
-//             <CreateRoomPage
-//               update={true}
-//               votesToSkip={roomDetails.votesToSkip}
-//               guestCanPause={roomDetails.guestCanPause}
-//               roomCode={roomCode}
-//               updateCallback={getRoomDetails}
-//               className="flex flex-col justify-center items-center bg-dark w-100"
-//             />
-
-//           </div>
-//         </div>
-//       </Container>
-//     );
-//   };
-
-
-
-//   const renderSettingsButton = () => {
-//     return (
-
-//       <Button
-//         className=" mx-2 rounded-full btn-circle-green"
-//         onClick={() => updateShowSettings(true)}
-//       >
-//         <FontAwesomeIcon icon={faGear} className="text-white" />
-//       </Button>
-
-//     );
-//   };
-
-//   if (showSettings) {
-//     return renderSettings();
-//   }
-
-
-//   const [activeTab, setActiveTab] = useState('playing');
-  
-//   const handleTabClick = (tabName) => {
-//     setActiveTab(tabName);
-//   };
-  
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button, OverlayTrigger } from "react-bootstrap";
@@ -190,6 +9,7 @@ import NowPlaying from "./NowPlaying";
 import Queue from "./Queue";
 import { QueueIcon, PlayingIcon, LyricsIcon } from "./Icons.js";
 import CurrentlyPlaying from "./CurrentlyPlaying";
+import ArtistDetails from "./ArtistDetails";
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -198,6 +18,7 @@ const Room = ({ leaveRoomCallback }) => {
     isHost: false,
     spotifyAuthenticated: false,
     song: {},
+    artists: {},
   });
   const [showSettings, setShowSettings] = useState(false);
   const [activeTab, setActiveTab] = useState('playing');
@@ -322,6 +143,7 @@ const Room = ({ leaveRoomCallback }) => {
         console.error("Error fetching current song:", error);
       });
   };
+  
 
   const playing = (props) => (
     <div {...props} className='p-1 mr-2 flex justify-center items-center rounded bg-dark-light'>
@@ -433,7 +255,7 @@ const Room = ({ leaveRoomCallback }) => {
                 {activeTab === 'playing' && (
                   <div className="inline-flex px-1 my-1 pt-2 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
                     <NowPlaying {...song} />
-
+                    <ArtistDetails {...song} />
                   </div>
                 )}
 
