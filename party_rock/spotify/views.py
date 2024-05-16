@@ -227,3 +227,41 @@ class GetUserQueue(APIView):
             return Response(queue_data, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Queue is empty'}, status=status.HTTP_204_NO_CONTENT)
+        
+
+class CurrentArtist(APIView):
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+        
+        if not room:
+            return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        host = room.host
+        endpoint = "me/player/currently-playing"
+        response = execute_spotify_api_request(host, endpoint)
+        
+        if 'error' in response or 'item' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        artist_info = []
+        for artist in response['item']['artists']:
+            artist_id = artist['id']
+            artist_endpoint = f"artists/{artist_id}"
+            artist_response = execute_spotify_api_request(host, artist_endpoint)
+            if 'error' not in artist_response:
+                artist_data = {
+                    'name': artist_response['name'],
+                    'followers': artist_response['followers']['total'],
+                    'popularity': artist_response['popularity']
+                }
+         
+                if artist_response['images']:
+                  
+                    image_url = artist_response['images'][0]['url']
+                    artist_data['image_url'] = image_url
+                else:
+                    artist_data['image_url'] = None  
+                artist_info.append(artist_data)
+        
+        return Response(artist_info, status=status.HTTP_200_OK)

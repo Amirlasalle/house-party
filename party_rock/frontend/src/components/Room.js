@@ -9,7 +9,8 @@ import NowPlaying from "./NowPlaying";
 import Queue from "./Queue";
 import { QueueIcon, PlayingIcon, LyricsIcon } from "./Icons.js";
 import CurrentlyPlaying from "./CurrentlyPlaying";
-import ArtistDetails from "./ArtistDetails";
+import Credits from "./Credits";
+import CurrentArtist from "./CurrentArtist";
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -255,7 +256,8 @@ const Room = ({ leaveRoomCallback }) => {
                 {activeTab === 'playing' && (
                   <div className="inline-flex px-1 my-1 pt-2 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
                     <NowPlaying {...song} />
-                    <ArtistDetails {...song} />
+                    <CurrentArtist {...song} />
+                    <Credits {...song} />
                   </div>
                 )}
 

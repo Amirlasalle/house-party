@@ -79,7 +79,7 @@ const Queue = () => {
     }
 
     if (error) {
-        return <p className='text-white'>Error: {error}</p>;
+        return ' '
     }
 
     if (!queue || queue.length === 0) {

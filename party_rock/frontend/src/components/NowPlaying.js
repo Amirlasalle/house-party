@@ -84,7 +84,7 @@ const NowPlaying = (props) => {
             </div>
 
 
-            <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
+            {/* <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
 
                 <div className="pl-3 flex flex-col items-start justify-start text-left">
                     <h6 className="mt-2 text-white font-medium">{`${props.artist ? "About the artist" : " "}`}</h6>
@@ -108,7 +108,7 @@ const NowPlaying = (props) => {
 
                 </div>
 
-            </div>
+            </div> */}
         </div>
     );
 };
