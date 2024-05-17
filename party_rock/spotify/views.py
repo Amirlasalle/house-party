@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import render, redirect
 from .credentials import REDIRECT_URI, CLIENT_ID, CLIENT_SECRET
 from rest_framework.views import APIView
@@ -229,6 +230,45 @@ class GetUserQueue(APIView):
             return Response({'error': 'Queue is empty'}, status=status.HTTP_204_NO_CONTENT)
         
 
+# class CurrentArtist(APIView):
+#     def get(self, request, format=None):
+#         room_code = self.request.session.get('room_code')
+#         room = Room.objects.filter(code=room_code).first()
+        
+#         if not room:
+#             return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+#         host = room.host
+#         endpoint = "me/player/currently-playing"
+#         response = execute_spotify_api_request(host, endpoint)
+        
+#         if 'error' in response or 'item' not in response:
+#             return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+#         artist_info = []
+#         for artist in response['item']['artists']:
+#             artist_id = artist['id']
+#             artist_endpoint = f"artists/{artist_id}"
+#             artist_response = execute_spotify_api_request(host, artist_endpoint)
+#             if 'error' not in artist_response:
+#                 artist_data = {
+#                     'name': artist_response['name'],
+#                     'followers': artist_response['followers']['total'],
+#                     'popularity': artist_response['popularity']
+#                 }
+         
+#                 if artist_response['images']:
+                  
+#                     image_url = artist_response['images'][0]['url']
+#                     artist_data['image_url'] = image_url
+#                 else:
+#                     artist_data['image_url'] = None  
+#                 artist_info.append(artist_data)
+        
+#         return Response(artist_info, status=status.HTTP_200_OK)
+
+logger = logging.getLogger(__name__)
+
 class CurrentArtist(APIView):
     def get(self, request, format=None):
         room_code = self.request.session.get('room_code')
@@ -245,30 +285,39 @@ class CurrentArtist(APIView):
             return Response({}, status=status.HTTP_204_NO_CONTENT)
         
         artist_info = []
-        for artist in response['item']['artists']:
-            artist_id = artist['id']
+        for artist in response.get('item', {}).get('artists', []):
+            artist_id = artist.get('id')
+            if not artist_id:
+                continue
+            
             artist_endpoint = f"artists/{artist_id}"
             artist_response = execute_spotify_api_request(host, artist_endpoint)
-            if 'error' not in artist_response:
+            
+            if 'error' in artist_response:
+                logger.error(f"Failed to get artist info for {artist_id}: {artist_response.get('error', {})}")
+                continue
+            
+            try:
                 artist_data = {
                     'name': artist_response['name'],
                     'followers': artist_response['followers']['total'],
-                    'popularity': artist_response['popularity'], 
-                    'type': artist_response['type'],  
-                    'uri': artist_response['uri'],
-                    'href': f"https://api.spotify.com/v1/artists/{artist_id}" 
+                    'popularity': artist_response['popularity']
                 }
-         
-                if artist_response['images']:
-                  
+                
+                if artist_response.get('images'):
                     image_url = artist_response['images'][0]['url']
                     artist_data['image_url'] = image_url
                 else:
-                    artist_data['image_url'] = None  
+                    artist_data['image_url'] = None
+                
                 artist_info.append(artist_data)
+                
+            except KeyError as e:
+                logger.error(f"Missing key in artist response: {str(e)}")
+                continue
         
         return Response(artist_info, status=status.HTTP_200_OK)
-    
+
 class SearchSong(APIView):
     def get(self, request, format=None):
         query = request.GET.get('query')
