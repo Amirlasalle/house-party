@@ -11,6 +11,7 @@ import { QueueIcon, PlayingIcon, LyricsIcon } from "./Icons.js";
 import CurrentlyPlaying from "./CurrentlyPlaying";
 import Credits from "./Credits";
 import CurrentArtist from "./CurrentArtist";
+import SearchSong from "./SearchSong";
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -263,6 +264,8 @@ const Room = ({ leaveRoomCallback }) => {
 
                 {activeTab === 'lyrics' && (
                   <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
+                    <SearchSong  />
+                    
                     <MusicPlayer {...song} />
 
                   </div>

@@ -117,9 +117,8 @@ const CurrentArtist = () => {
 
     return (
         <div className="p-1 justify-center items-center flex flex-col">
-            {Object.entries(artistInfo).map(([artistId, info]) => (
-                <>
-                    <div key={artistId} className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
+         {Object.entries(artistInfo).map(([theArtist, info]) => (
+    <div key={theArtist} className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
 
                         <div className="pl-3 flex flex-col items-start justify-start text-left">
                             <h6 className="mt-2 text-white font-medium">{`${info.name ? "About the artist" : " "}`}</h6>
@@ -138,13 +137,11 @@ const CurrentArtist = () => {
                                 <p className="mt-3 text-white text-base">{`${info.name ? info.name : " "}`}</p>
                                 <p className=" text-default text-medium">{info.followers ? info.followers.toLocaleString() : " "}</p>
                                 <p className=" text-default text-medium">{`${info.followers ? "monthly listeners" : " "}`}</p>
-
                             </div>
 
                         </div>
 
                     </div>
-                </>
             ))}
 
         </div>

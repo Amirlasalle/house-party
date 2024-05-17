@@ -30,6 +30,13 @@ body {
   min-height: 100vh !important;
 }
 
+.offcanvas-body {
+  flex-grow: 1;
+  padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
+  overflow-y: auto;
+  scrollbar-color: #fff transparent;
+}
+
 .left-0 {
   left: 0 !important;
 }
@@ -2631,8 +2638,7 @@ button {
   width: 95%;
   outline: 1px solid #a0a0a058 !important;
   align-items: center;
-  border-radius: .9rem !important;
-  margin-top: 3rem;
+  border-radius: 55px !important;
 }
 
 .search-btn-form {

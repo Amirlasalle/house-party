@@ -5,6 +5,8 @@ import { faCircleInfo, faHouse, faSearch, faUsers } from '@fortawesome/free-soli
 import friendslistData from './jsons/friendsdemo.json';
 import AnimatedText from "./AnimatedText"
 import homePic from "../images/party-rock-home.png"
+import FollowedArtists from './FollowedArtists';
+import SearchSong from './SearchSong';
 
 function NavigationBar({ leaveRoomCallback }) {
 
@@ -54,6 +56,8 @@ function NavigationBar({ leaveRoomCallback }) {
             leaveRoomCallback();
         });
     };
+
+    
 
     return (
 
@@ -135,14 +139,14 @@ function NavigationBar({ leaveRoomCallback }) {
                     show={showOffcanvas}
                     onHide={handleCloseOffcanvas}
                     placement="start"
-                    aria-labelledby="friendsList"
+                    aria-labelledby="searchBar"
                     className="flex h-100 bg-spotify-green"
                 >
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title id="offcanvasNavbarLabel" className='text-white'><span className='flex items-center justify-center'>Friends List</span></Offcanvas.Title>
+                        <Offcanvas.Title id="offcanvasNavbarLabel" className='text-white'><span className='flex items-center justify-center'>Party Rock Search</span></Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        Hello Friends
+                    <Offcanvas.Body className="pt-0">
+                    <SearchSong />
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>

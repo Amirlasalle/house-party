@@ -12,4 +12,5 @@ urlpatterns = [
     path('skip', SkipSong.as_view()),
     path('queue', GetUserQueue.as_view()),
     path('current-artist', CurrentArtist.as_view()),
+    path('search', SearchSong.as_view())
 ]

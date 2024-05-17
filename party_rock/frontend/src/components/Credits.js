@@ -3,7 +3,7 @@ import { Image } from 'react-bootstrap';
 import Oig2 from '../images/OIG2.png';
 
 const Credits = () => {
-    const [artistInfo, setArtistInfo] = useState({});
+    const [creditsInfo, setCreditsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -24,7 +24,7 @@ const Credits = () => {
                 return response.json();
             })
             .then((data) => {
-                setArtistInfo(data);
+                setCreditsInfo(data);
                 setIsLoading(false);
             })
             .catch((error) => {
@@ -67,7 +67,7 @@ const Credits = () => {
         );
     }
 
-    if (!artistInfo || Object.keys(artistInfo).length === 0) {
+    if (!creditsInfo || Object.keys(creditsInfo).length === 0) {
         return <div>No artist information available</div>;
     }
 
@@ -82,10 +82,11 @@ const Credits = () => {
 
                 <div className="max-w-100 flex flex-col items-start justify-center mb-2">
 
-                    {Object.entries(artistInfo).map(([artistId, artistData]) => (
+                    {Object.entries(creditsInfo).map(([artistId, artistData]) => (
 
                         <div key={artistId} className="max-w-100 flex flex-col items-start justify-center pl-3 mb-2">
                             <p className="mt-2 text-white text-base">{`${artistData.name ? artistData.name : " "}`}</p>
+                             <p className=" text-default font-medium">{artistData.followers ? artistData.type : " "}</p>
                             <p className=" text-default font-medium">{artistData.followers ? artistData.followers.toLocaleString() : " "}{' '}{`${artistData.followers ? "followers" : " "}`}</p>
                         </div>
                     ))}

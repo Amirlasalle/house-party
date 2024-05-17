@@ -253,7 +253,10 @@ class CurrentArtist(APIView):
                 artist_data = {
                     'name': artist_response['name'],
                     'followers': artist_response['followers']['total'],
-                    'popularity': artist_response['popularity']
+                    'popularity': artist_response['popularity'], 
+                    'type': artist_response['type'],  
+                    'uri': artist_response['uri'],
+                    'href': f"https://api.spotify.com/v1/artists/{artist_id}" 
                 }
          
                 if artist_response['images']:
@@ -265,3 +268,51 @@ class CurrentArtist(APIView):
                 artist_info.append(artist_data)
         
         return Response(artist_info, status=status.HTTP_200_OK)
+    
+class SearchSong(APIView):
+    def get(self, request, format=None):
+        query = request.GET.get('query')
+        if not query:
+            return Response({'error': 'No query parameter provided'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Fetch the room code from the session
+        room_code = request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+
+        if not room:
+            return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Retrieve the host information from the room
+        host = room.host
+
+        # Construct the Spotify API search endpoint
+        endpoint = f"search?q={query}&type=track"
+        
+        # Execute the Spotify API request
+        response = execute_spotify_api_request(host, endpoint)
+
+        # Check for errors in the Spotify API response
+        if 'error' in response:
+            return Response({'error': 'Failed to search for songs'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        # Extract track information from the Spotify API response
+        search_results = []
+        tracks = response.get('tracks', {}).get('items', [])
+        for track in tracks:
+            name = track.get('name')
+            artists = ", ".join(artist.get('name') for artist in track.get('artists', []))
+            duration = track.get('duration_ms')
+            album_cover = track.get('album', {}).get('images', [{}])[0].get('url')
+            song_id = track.get('id')
+            search_results.append({
+                'name': name,
+                'artist': artists,
+                'duration': duration,
+                'image_url': album_cover,
+                'id': song_id
+            })
+        
+        # Return the search results
+        return Response({'songs': search_results}, status=status.HTTP_200_OK)
+
+
