@@ -300,8 +300,10 @@ class CurrentArtist(APIView):
             try:
                 artist_data = {
                     'name': artist_response['name'],
-                    'followers': artist_response['followers']['total'],
-                    'popularity': artist_response['popularity']
+                    'followers': artist_response['followers']['total'], 
+                    'type': artist_response['type'],  
+                    'popularity': artist_response['popularity'],  
+                    'uri': artist_response['uri']
                 }
                 
                 if artist_response.get('images'):
