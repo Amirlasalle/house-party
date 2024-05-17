@@ -13,7 +13,7 @@ const Queue = () => {
 
         const interval = setInterval(() => {
             getUserQueue();
-        }, 5000);
+        }, 1000);
 
 
         return () => clearInterval(interval);

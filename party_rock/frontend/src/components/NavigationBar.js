@@ -143,7 +143,7 @@ function NavigationBar({ leaveRoomCallback }) {
                     className="flex h-100 bg-spotify-green"
                 >
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title id="offcanvasNavbarLabel" className='text-white'><span className='flex items-center justify-center'>Party Rock Search</span></Offcanvas.Title>
+                        <Offcanvas.Title id="offcanvasNavbarLabel" className='text-dark'><span className='flex items-center justify-center text-dark'>Party Rock Search</span></Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body className="pt-0">
                     <SearchSong />

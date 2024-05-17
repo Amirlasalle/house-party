@@ -10,7 +10,7 @@ const Credits = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             getCurrentArtist();
-        }, 5000);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
