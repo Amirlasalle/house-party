@@ -36,23 +36,6 @@ const CurrentArtist = () => {
     if (isLoading) {
         return (
             <>
-                <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
-
-                    <div className="pl-3 flex flex-col items-start justify-start text-left">
-
-
-                        <div className="mt-2 rounded-full flex items-start justify-start" />
-
-
-                        <div className="max-w-100 flex flex-col items-start justify-center mb-2">
-                            <p className="mt-3 text-white text-base"></p>
-                            <p className=" text-default text-medium"></p>
-                            <p className=" text-default text-medium"></p>
-                        </div>
-
-                    </div>
-
-                </div>
 
                 <div className="flex items-start justify-start mt-4 mx-0 bg-ffffff12 overflow-hidden rounded-lg w-100">
 

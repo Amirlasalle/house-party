@@ -65,9 +65,10 @@ const CurrentlyPlaying = (props) => {
 
                 <div className="w-18rem">
                     <ul className='pl-0 '>
-                     
-                            <li className='p-1 inline-flex w-17rem hover-bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
+
+                        <li className='p-1 inline-flex w-17rem hover-bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
+                            <div className="ml-1 flex justify-start items-center">
+                             
                                     <Image
                                         src={props.image_url || Oig2}
                                         width="50"
@@ -75,22 +76,22 @@ const CurrentlyPlaying = (props) => {
                                         alt={props.name}
                                         className="rounded-lg"
                                     />
-
-                                    <div className="flex flex-col justify-start items-start ml-2">
-                                        <div className="flex items-start justify-start">
-                                            <p className="text-left elipsis-line text-spotify-green flex items-start justify-start text-base">
-                                                <span className='text-base text-left items-start justify-start elipsis'>{props.title}</span>
-                                            </p>
-                                        </div>
-                                        <div className="flex items-start justify-start">
-                                            <p className="text-left elipsis-line text-default flex items-start justify-start">
-                                                <span className='text-medium text-default text-left items-start justify-start elipsis'>{props.artist}</span>
-                                            </p>
-                                        </div>
+                            
+                                <div className="flex flex-col justify-start items-start ml-2">
+                                    <div className="flex items-start justify-start">
+                                        <p className="text-left elipsis-line text-spotify-green flex items-start justify-start text-base">
+                                            <span className='text-base text-left items-start justify-start elipsis'>{props.title}</span>
+                                        </p>
+                                    </div>
+                                    <div className="flex items-start justify-start">
+                                        <p className="text-left elipsis-line text-default flex items-start justify-start">
+                                            <span className='text-medium text-default text-left items-start justify-start elipsis'>{props.artist}</span>
+                                        </p>
                                     </div>
                                 </div>
-                            </li>
-                    
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import CurrentlyPlaying from "./CurrentlyPlaying";
 import Credits from "./Credits";
 import CurrentArtist from "./CurrentArtist";
 import SearchSong from "./SearchSong";
+import FollowedArtists from "./FollowedArtists";
 
 const Room = ({ leaveRoomCallback }) => {
   const [roomDetails, setRoomDetails] = useState({
@@ -29,30 +30,30 @@ const Room = ({ leaveRoomCallback }) => {
   const [song, setSong] = useState(null);
 
   const renderSettings = () => {
-        return (
-          <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-hidden">
-            <div className="justify-content-center align-items-center">
-              <div className="flex flex-col items-center justify-center">
-                <div
-                  className="update-button items-center justify-center rounded-full cursor-pointer text-white"
-                  onClick={() => updateShowSettings(false)}
-                >
-                  <FontAwesomeIcon icon={faXmark} />
-                </div>
-                <CreateRoomPage
-                  update={true}
-                  votesToSkip={roomDetails.votesToSkip}
-                  guestCanPause={roomDetails.guestCanPause}
-                  roomCode={roomCode}
-                  updateCallback={getRoomDetails}
-                  className="flex flex-col justify-center items-center bg-dark w-100"
-                />
-    
-              </div>
+    return (
+      <Container fluid className="flex justify-center items-center bg-dark rounded-lg h-full w-100 overflow-hidden">
+        <div className="justify-content-center align-items-center">
+          <div className="flex flex-col items-center justify-center">
+            <div
+              className="update-button items-center justify-center rounded-full cursor-pointer text-white"
+              onClick={() => updateShowSettings(false)}
+            >
+              <FontAwesomeIcon icon={faXmark} />
             </div>
-          </Container>
-        );
-      };
+            <CreateRoomPage
+              update={true}
+              votesToSkip={roomDetails.votesToSkip}
+              guestCanPause={roomDetails.guestCanPause}
+              roomCode={roomCode}
+              updateCallback={getRoomDetails}
+              className="flex flex-col justify-center items-center bg-dark w-100"
+            />
+
+          </div>
+        </div>
+      </Container>
+    );
+  };
 
   const renderSettingsButton = () => {
     return (
@@ -145,7 +146,7 @@ const Room = ({ leaveRoomCallback }) => {
         console.error("Error fetching current song:", error);
       });
   };
-  
+
 
   const playing = (props) => (
     <div {...props} className='p-1 mr-2 flex justify-center items-center rounded bg-dark-light'>
@@ -264,10 +265,10 @@ const Room = ({ leaveRoomCallback }) => {
 
                 {activeTab === 'lyrics' && (
                   <div className="inline-flex px-1 my-1 h-32rem justify-center items-center flex-row overflow-y-scroll w-100">
-                
-                
-                    <MusicPlayer {...song} />
 
+
+                    <MusicPlayer {...song} />
+                    <FollowedArtists {...song} />
                   </div>
                 )}
 
