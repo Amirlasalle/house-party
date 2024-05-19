@@ -8,14 +8,14 @@ export const QueueIcon = () => (
 
 export const PlayingIcon = () => (
     <svg
-      fill="currentColor"
-      viewBox="0 0 16 16"
-      height="1em"
-      width="1em"
-      className="w-20px h-20px"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        height="1em"
+        width="1em"
+        className="w-20px h-20px"
     >
-      <path d="M6 10.117V5.883a.5.5 0 01.757-.429l3.528 2.117a.5.5 0 010 .858l-3.528 2.117a.5.5 0 01-.757-.43z" />
-      <path d="M4 0a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V2a2 2 0 00-2-2H4zm0 1h8a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z" />
+        <path d="M6 10.117V5.883a.5.5 0 01.757-.429l3.528 2.117a.5.5 0 010 .858l-3.528 2.117a.5.5 0 01-.757-.43z" />
+        <path d="M4 0a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V2a2 2 0 00-2-2H4zm0 1h8a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1z" />
     </svg>
 );
 
@@ -30,6 +30,14 @@ export const LyricsIcon = () => (
         <path d="M15 12.9l-3.902 -3.899l-7.513 8.584a2 2 0 1 0 2.827 2.83l8.588 -7.515z" />
     </svg>
 );
+
+export const UserIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20px h-20px">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+    </svg>
+
+);
+
 
 export const PlayIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-20px h-20px">
@@ -61,3 +69,4 @@ export const SkipIcon = () => (
         <path d="M20 4a1 1 0 0 1 .993 .883l.007 .117v14a1 1 0 0 1 -1.993 .117l-.007 -.117v-14a1 1 0 0 1 1 -1z" stroke-width="0" fill="currentColor" />
     </svg>
 );
+

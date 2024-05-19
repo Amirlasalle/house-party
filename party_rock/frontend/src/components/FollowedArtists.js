@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Image } from "react-bootstrap";
+import { Image, OverlayTrigger } from "react-bootstrap";
 import Oig2 from "../images/OIG2.png";
+import { UserIcon } from './Icons';
 
 const FollowedArtists = () => {
     const [artists, setArtists] = useState([]);
@@ -15,11 +16,19 @@ const FollowedArtists = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const artistDetails = (artist) => (
+        <div className='p-1 ml-2 rounded bg-dark-light'>
+            <div><p className='text-white text-md'>{artist.name}</p></div>
+        </div>
+    );
+
     const getFollowedArtists = () => {
         fetch("/spotify/followed-artists")
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Failed to fetch followed artists');
+                    return response.json().then((errorData) => {
+                        throw new Error(`${response.status}: ${errorData.error}`);
+                    });
                 }
                 return response.json();
             })
@@ -35,34 +44,32 @@ const FollowedArtists = () => {
 
     if (loading) {
         return (
-            <div className="p-1 mt-1 justify-center items-center flex flex-col w-18rem overflow-x-hidden">
-                <div className='flex flex-col items-start justify-start w-18rem'>
-                    <div className="flex items-start justify-start ml-2">
-                        <h6 className="mt-2 text-left text-white flex items-start justify-start font-medium">Followed Artists</h6>
+            <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
+                <div className='justify-center items-center flex flex-col'>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
                     </div>
-                    <div>
-                        <ul className='pl-0 '>
-                            <li className='p-1 my-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <div className="bg-ffffff12 w-3rem h-3rem rounded-lg" />
-                                </div>
-                            </li>
-                            <li className='p-1 my-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <div className="bg-ffffff12 w-3rem h-3rem rounded-lg" />
-                                </div>
-                            </li>
-                            <li className='p-1 my-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <div className="bg-ffffff12 w-3rem h-3rem rounded-lg" />
-                                </div>
-                            </li>
-                            <li className='p-1 mt-2 inline-flex w-17rem bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <div className="bg-ffffff12 w-3rem h-3rem rounded-lg" />
-                                </div>
-                            </li>
-                        </ul>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,8 +78,36 @@ const FollowedArtists = () => {
 
     if (error) {
         return (
-            <div>{error}</div>
-        )
+            <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
+                <div className='justify-center items-center flex flex-col'>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                        <div className="border-spotify-green flex bg-clear justify-center items-center cursor-pointer where-to-image-two" >
+                            <UserIcon />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     if (!artists || artists.length === 0) {
@@ -80,40 +115,23 @@ const FollowedArtists = () => {
     }
 
     return (
-        <div className="p-1 justify-center items-center flex flex-col w-18rem overflow-x-hidden">
-            <div className='flex flex-col items-start justify-start w-18rem'>
-                <div className="flex items-start justify-start ml-2">
-                    <h6 className="mt-2 text-left text-white flex items-start justify-start font-medium">Followed Artists</h6>
-                </div>
-                <div>
-                    <ul className='pl-0 '>
-                        {artists.map((artist, index) => (
-                            <li key={index} className='p-1 inline-flex w-17rem hover-bg-ffffff12 rounded-lg cursor-pointer justify-start items-start multi-line-ellipsis'>
-                                <div className="ml-1 flex justify-start items-center">
-                                    <Image
-                                        src={artist.image_url || Oig2}
-                                        width="50"
-                                        height="50"
-                                        alt={artist.name}
-                                        className="rounded-lg"
-                                    />
-                                    <div className="flex flex-col justify-start items-start ml-2">
-                                        <div className="flex items-start justify-start">
-                                            <p className="text-left elipsis-line text-white flex items-start justify-start text-base">
-                                                <span className='text-base text-left items-start justify-start elipsis'>{artist.name}</span>
-                                            </p>
-                                        </div>
-                                        <div className="flex items-start justify-start">
-                                            <p className="text-left elipsis-line text-default flex items-start justify-start">
-                                                <span className='text-medium text-default text-left items-start justify-start elipsis'>{artist.genres.join(', ')}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+        <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
+            <div className='justify-center items-center flex flex-col'>
+                {artists.map((artist) => (
+                    <OverlayTrigger
+                        key={artist.id}
+                        placement="right"
+                        delay={{ show: 250, hide: 50 }}
+                        overlay={artistDetails(artist)}
+                    >
+                        <div className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer">
+                            <Image
+                                src={artist.images[0]?.url || Oig2}
+                                className="img-fluid d-flex border-spotify-green flex-wrap justify-content-around cursor-pointer where-to-image-two"
+                            />
+                        </div>
+                    </OverlayTrigger>
+                ))}
             </div>
         </div>
     );
