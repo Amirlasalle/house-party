@@ -18,9 +18,11 @@ const FollowedArtists = () => {
 
     const artistDetails = (artist) => (
         <div className='p-1 ml-2 rounded bg-dark-light'>
-            <div><p className='text-white text-md'>{artist.name}</p></div>
+            <p className='text-white mt-1 mb-3-75 line-height-0 text-base'>{artist.name}</p>
+          <p className='text-default mt-1 mb-1 line-height-0 capitalized text-xs'>{artist.type}</p>
         </div>
     );
+
 
     const getFollowedArtists = () => {
         fetch("/spotify/followed-artists")

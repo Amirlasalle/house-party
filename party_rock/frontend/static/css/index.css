@@ -115,13 +115,7 @@ body {
   color: rgba(67, 67, 67, 0.658);
 }
 
-.text-small {
-  font-size: small;
-}
 
-.text-medium {
-  font-size: medium;
-}
 
 .offcanvas-header .btn-close {
   display: flex !important;
@@ -385,6 +379,7 @@ body {
 .hover-underline-none:hover {
   text-decoration: none !important;
 }
+
 .hover-underline:hover {
   text-decoration: underline !important;
   text-underline-offset: 2px;
@@ -1436,12 +1431,12 @@ body {
 }
 
 .ellipsis-line {
-overflow-wrap: anywhere;
-outline: none;
-text-decoration: none;
-box-sizing: border-box;
--webkit-tap-highlight-color: transparent;
-margin-block: 0px;
+  overflow-wrap: anywhere;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  margin-block: 0px;
 
 }
 
@@ -3307,6 +3302,10 @@ label {
   display: inline-block;
 }
 
+.line-height-0 {
+  line-height: 0 !important;
+}
+
 input,
 select,
 textarea,
@@ -4404,6 +4403,14 @@ h-25-w-25 {
   margin-bottom: 1rem !important;
 }
 
+.mb-3-5 {
+  margin-bottom: 1.1875rem !important;
+}
+
+.mb-3-75 {
+  margin-bottom: 1.28125rem !important;
+}
+
 .mb-4 {
   margin-bottom: 1.375rem !important;
 }
@@ -5360,6 +5367,10 @@ h-25-w-25 {
   font-size: 10rem !important;
 }
 
+.capitalized {
+  text-transform: capitalize !important;
+}
+
 .font-thin {
   font-weight: 100 !important;
 }
@@ -5405,6 +5416,7 @@ h-25-w-25 {
 .textojsdfs {
   text-overflow: clip;
 }
+
 .white-space-wrap {
   white-space: wrap !important;
 }
