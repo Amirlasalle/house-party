@@ -3,7 +3,50 @@ import React from 'react'
 const dummy = () => {
   return (
     <>
-    
+      {/* <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
+                            <div>
+                                <div className=' justify-center items-center flex flex-col'>
+                                    {friendslist.map((friend, id) => (
+                                        <OverlayTrigger
+                                            key={friend.id}
+                                            placement="right"
+                                            delay={{ show: 250, hide: 50 }}
+                                            overlay={friendDetails(friend)}
+                                        >
+                                            <div
+                                                className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer"
+                                            >
+                                                <Image
+                                                    src={friend.propic}
+
+                                                    className="img-fluid d-flex border-spotify-green flex-wrap justify-content-around cursor-pointer where-to-image-two" />
+                                            </div>
+                                        </OverlayTrigger>
+                                    ))}
+                                </div>
+                            </div>
+                        </div> */}
+                                            {/* <div className='h-60-vh p-1 justify-center overflow-y-scroll'>
+                        <div className='justify-center items-center flex flex-col'>
+                            {artists.map((artist) => (
+                                <OverlayTrigger
+                                    key={artist.id}
+                                    placement="right"
+                                    delay={{ show: 250, hide: 50 }}
+                                    overlay={artistDetails(artist)}
+                                >
+                                    <div
+                                        className="flex items-center justify-center where-to-cards-two rounded-lg hover-bg-clear cursor-pointer"
+                                    >
+                                        <Image
+                                            src={artist.images[0]?.url || Oig2}
+                                            className="img-fluid d-flex border-spotify-green flex-wrap justify-content-around cursor-pointer where-to-image-two"
+                                        />
+                                    </div>
+                                </OverlayTrigger>
+                            ))}
+                        </div>
+                    </div> */}
     <Row className="justify-center items-center my-2">
     <div className="text-center">
       <h5 className="font-semibold pl-0 text-white">Room Code: {roomCode}</h5>

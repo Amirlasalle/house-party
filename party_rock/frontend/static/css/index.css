@@ -48,17 +48,42 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* #gradient {
-  width: 100%;
-  height: 800px;
-  padding: 0px;
-  margin: 0px;
-} */
+.svg-icons {
+  fill: currentcolor !important;
+  width:  24px;
+  height:  24px;
+}
+
+.svg-icon {
+  color: inherit !important;
+  min-width: 24px;
+}
+
+.active-icon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+
+ .not-active-icon {
+  color: currentColor;
+}
+
+.not-active-icon:hover {
+  color: white;
+}
+
+.not-active-icon svg,
+.not-active-icon p {
+  transition: color 0.3s;
+}
 
 .progress,
 .progress-stacked {
   --bs-progress-bg: hsla(0, 0%, 23%, 0.689);
 }
+
+
 
 .form-control {
   border-color: #aeaeae !important;
@@ -3314,13 +3339,23 @@ button {
 }
 
 a {
-  color: #1b89bc;
+  color: #b3b3b3;
   text-decoration: none;
 }
 
 a:hover {
-  color: #065b83;
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
+}
+
+.a {
+  color: #b3b3b3;
+  text-decoration: none;
+}
+
+.a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 /* HEIGHT / WIDTH UTILS */
@@ -3421,6 +3456,10 @@ h-25-w-25 {
 
 .h-78 {
   height: 78% !important;
+}
+
+.h-77 {
+  height: 77% !important;
 }
 
 .h-75 {
@@ -4084,6 +4123,400 @@ h-25-w-25 {
 }
 
 .h-50rem {
+  height: 50rem !important;
+}
+
+/* Width utility classes */
+.max-w-1rem {
+  width: 1rem !important;
+}
+
+.max-w-2rem {
+  width: 2rem !important;
+}
+
+.max-w-3rem {
+  width: 3rem !important;
+}
+
+.max-w-4rem {
+  width: 4rem !important;
+}
+
+.max-w-5rem {
+  width: 5rem !important;
+}
+
+.max-w-6rem {
+  width: 6rem !important;
+}
+
+.max-w-7rem {
+  width: 7rem !important;
+}
+
+.max-w-8rem {
+  width: 8rem !important;
+}
+
+.max-w-9rem {
+  width: 9rem !important;
+}
+
+.max-w-10rem {
+  width: 10rem !important;
+}
+
+.max-w-11rem {
+  width: 11rem !important;
+}
+
+.max-w-12rem {
+  width: 12rem !important;
+}
+
+.max-w-13rem {
+  width: 13rem !important;
+}
+
+.max-w-14rem {
+  width: 14rem !important;
+}
+
+.max-w-15rem {
+  width: 15rem !important;
+}
+
+.max-w-16rem {
+  width: 16rem !important;
+}
+
+.max-w-17rem {
+  width: 17rem !important;
+}
+
+.max-w-18rem {
+  width: 18rem !important;
+}
+
+.max-w-19rem {
+  width: 19rem !important;
+}
+
+.max-w-20rem {
+  width: 20rem !important;
+}
+
+.max-w-21rem {
+  width: 21rem !important;
+}
+
+.max-w-22rem {
+  width: 22rem !important;
+}
+
+.max-w-23rem {
+  width: 23rem !important;
+}
+
+.max-w-24rem {
+  width: 24rem !important;
+}
+
+.max-w-25rem {
+  width: 25rem !important;
+}
+
+.max-w-26rem {
+  width: 26rem !important;
+}
+
+.max-w-27rem {
+  width: 27rem !important;
+}
+
+.max-w-28rem {
+  width: 28rem !important;
+}
+
+.max-w-29rem {
+  width: 29rem !important;
+}
+
+.max-w-30rem {
+  width: 30rem !important;
+}
+
+.max-w-31rem {
+  width: 31rem !important;
+}
+
+.max-w-32rem {
+  width: 32rem !important;
+}
+
+.max-w-33rem {
+  width: 33rem !important;
+}
+
+.max-w-34rem {
+  width: 34rem !important;
+}
+
+.max-w-35rem {
+  width: 35rem !important;
+}
+
+.max-w-36rem {
+  width: 36rem !important;
+}
+
+.max-w-37rem {
+  width: 37rem !important;
+}
+
+.max-w-38rem {
+  width: 38rem !important;
+}
+
+.max-w-39rem {
+  width: 39rem !important;
+}
+
+.max-w-40rem {
+  width: 40rem !important;
+}
+
+.max-w-41rem {
+  width: 41rem !important;
+}
+
+.max-w-42rem {
+  width: 42rem !important;
+}
+
+.max-w-43rem {
+  width: 43rem !important;
+}
+
+.max-w-44rem {
+  width: 44rem !important;
+}
+
+.max-w-45rem {
+  width: 45rem !important;
+}
+
+.max-w-46rem {
+  width: 46rem !important;
+}
+
+.max-w-47rem {
+  width: 47rem !important;
+}
+
+.max-w-48rem {
+  width: 48rem !important;
+}
+
+.max-w-50rem {
+  width: 50rem !important;
+}
+
+/* Height utility classes */
+.max-h-1rem {
+  height: 1rem !important;
+}
+
+.max-h-2rem {
+  height: 2rem !important;
+}
+
+.max-h-3rem {
+  height: 3rem !important;
+}
+
+.max-h-4rem {
+  height: 4rem !important;
+}
+
+.max-h-5rem {
+  height: 5rem !important;
+}
+
+.max-h-6rem {
+  height: 6rem !important;
+}
+
+.max-h-7rem {
+  height: 7rem !important;
+}
+
+.max-h-8rem {
+  height: 8rem !important;
+}
+
+.max-h-9rem {
+  height: 9rem !important;
+}
+
+.max-h-10rem {
+  height: 10rem !important;
+}
+
+.max-h-11rem {
+  height: 11rem !important;
+}
+
+.max-h-12rem {
+  height: 12rem !important;
+}
+
+.max-h-13rem {
+  height: 13rem !important;
+}
+
+.max-h-14rem {
+  height: 14rem !important;
+}
+
+.max-h-15rem {
+  height: 15rem !important;
+}
+
+.max-h-16rem {
+  height: 16rem !important;
+}
+
+.max-h-17rem {
+  height: 17rem !important;
+}
+
+.max-h-18rem {
+  height: 18rem !important;
+}
+
+.max-h-19rem {
+  height: 19rem !important;
+}
+
+.max-h-20rem {
+  height: 20rem !important;
+}
+
+.max-h-21rem {
+  height: 21rem !important;
+}
+
+.max-h-22rem {
+  height: 22rem !important;
+}
+
+.max-h-23rem {
+  height: 23rem !important;
+}
+
+.max-h-24rem {
+  height: 24rem !important;
+}
+
+.max-h-25rem {
+  height: 25rem !important;
+}
+
+.max-h-26rem {
+  height: 26rem !important;
+}
+
+.max-h-27rem {
+  height: 27rem !important;
+}
+
+.max-h-28rem {
+  height: 28rem !important;
+}
+
+.max-h-29rem {
+  height: 29rem !important;
+}
+
+.max-h-30rem {
+  height: 30rem !important;
+}
+
+.max-h-31rem {
+  height: 31rem !important;
+}
+
+.max-h-32rem {
+  height: 32rem !important;
+}
+
+.max-h-33rem {
+  height: 33rem !important;
+}
+
+.max-h-34rem {
+  height: 34rem !important;
+}
+
+.max-h-35rem {
+  height: 35rem !important;
+}
+
+.max-h-36rem {
+  height: 36rem !important;
+}
+
+.max-h-37rem {
+  height: 37rem !important;
+}
+
+.max-h-38rem {
+  height: 38rem !important;
+}
+
+.max-h-39rem {
+  height: 39rem !important;
+}
+
+.max-h-40rem {
+  height: 40rem !important;
+}
+
+.max-h-41rem {
+  height: 41rem !important;
+}
+
+.max-h-42rem {
+  height: 42rem !important;
+}
+
+.max-h-43rem {
+  height: 43rem !important;
+}
+
+.max-h-44rem {
+  height: 44rem !important;
+}
+
+.max-h-45rem {
+  height: 45rem !important;
+}
+
+.max-h-46rem {
+  height: 46rem !important;
+}
+
+.max-h-47rem {
+  height: 47rem !important;
+}
+
+.max-h-48rem {
+  height: 48rem !important;
+}
+
+.max-h-50rem {
   height: 50rem !important;
 }
 
@@ -5640,7 +6073,7 @@ h-25-w-25 {
 }
 
 .text-default {
-  color: #aeaeae !important;
+  color: #b3b3b3 !important;
 }
 
 .text-default-2 {

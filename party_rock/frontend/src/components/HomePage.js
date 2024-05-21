@@ -115,10 +115,7 @@ function HomePage() {
 
   return (
     <Router>
-      <div id="root" className="w-100 mx-2 pt-2 pb-2 pr-2 h-100-vh overflow-x-scroll overflow-y-hidden flex justify-center align-items-center ">
-        {/* <div className="ml-2 py-y h-100-vh overflow-hidden inline-flex flex-row justify-center align-items-center w-6rem bg-white" >
-          <NavigationBar className="h-100-vh" />
-        </div> */}
+      <div id="root" className="w-100 mr-2 pt-2 pb-2 pr-2 h-100-vh overflow-x-scroll overflow-y-hidden flex justify-center align-items-center ">
         <Routes>
           <Route
             exact

@@ -13,7 +13,7 @@ from .models import Vote
 # Create your views here.
 class AuthURL(APIView):
     def get(self, request, format=None):
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-follow-read'
 
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
             'scope': scopes,
@@ -179,6 +179,8 @@ class SkipSong(APIView):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
     
 
+logger = logging.getLogger(__name__)
+
 class GetUserQueue(APIView):
     def get(self, request, format=None):
         room_code = self.request.session.get('room_code')
@@ -194,78 +196,31 @@ class GetUserQueue(APIView):
         if 'error' in response or 'queue' not in response:
             return Response({'error': 'Failed to fetch queue'}, status=status.HTTP_204_NO_CONTENT)
         
-        currently_playing = response.get('currently_playing')
         queue = response.get('queue')
 
-        if currently_playing:
-          
-            pass
-
-        if queue:
-         
+        if queue and len(queue) > 0:
             queue_data = []
             for item in queue:
-             
                 name = item.get('name')
                 artist_string = ", ".join(artist.get('name') for artist in item.get('artists'))
                 duration = item.get('duration_ms')
                 album_cover = item.get('album').get('images')[0].get('url')
-                is_playing = item.get('is_playing')
                 song_id = item.get('id')
                 votes = Vote.objects.filter(room=room, song_id=song_id).count()
                 
-             
                 queue_data.append({
                     'name': name,
                     'artist': artist_string,
                     'duration': duration,
                     'image_url': album_cover,
-                    'is_playing': is_playing,
                     'votes': votes,
                     'id': song_id
                 })
 
             return Response(queue_data, status=status.HTTP_200_OK)
         else:
-            return Response({'error': 'Queue is empty'}, status=status.HTTP_204_NO_CONTENT)
-        
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-# class CurrentArtist(APIView):
-#     def get(self, request, format=None):
-#         room_code = self.request.session.get('room_code')
-#         room = Room.objects.filter(code=room_code).first()
-        
-#         if not room:
-#             return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
-        
-#         host = room.host
-#         endpoint = "me/player/currently-playing"
-#         response = execute_spotify_api_request(host, endpoint)
-        
-#         if 'error' in response or 'item' not in response:
-#             return Response({}, status=status.HTTP_204_NO_CONTENT)
-        
-#         artist_info = []
-#         for artist in response['item']['artists']:
-#             artist_id = artist['id']
-#             artist_endpoint = f"artists/{artist_id}"
-#             artist_response = execute_spotify_api_request(host, artist_endpoint)
-#             if 'error' not in artist_response:
-#                 artist_data = {
-#                     'name': artist_response['name'],
-#                     'followers': artist_response['followers']['total'],
-#                     'popularity': artist_response['popularity']
-#                 }
-         
-#                 if artist_response['images']:
-                  
-#                     image_url = artist_response['images'][0]['url']
-#                     artist_data['image_url'] = image_url
-#                 else:
-#                     artist_data['image_url'] = None  
-#                 artist_info.append(artist_data)
-        
-#         return Response(artist_info, status=status.HTTP_200_OK)
 
 logger = logging.getLogger(__name__)
 
@@ -320,6 +275,7 @@ class CurrentArtist(APIView):
         
         return Response(artist_info, status=status.HTTP_200_OK)
 
+
 class SearchSong(APIView):
     def get(self, request, format=None):
         query = request.GET.get('query')
@@ -362,3 +318,85 @@ class SearchSong(APIView):
         return Response({'songs': search_results}, status=status.HTTP_200_OK)
 
 
+class PlayQueuedSong(APIView):
+    def put(self, request, format=None):
+        song_id = request.data.get('song_id')
+        if not song_id:
+            return Response({'error': 'Song ID not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+
+        if not room:
+            return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        response = play_queued_song(room.host, song_id)
+
+        if 'error' in response:
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(response, status=status.HTTP_200_OK)
+    
+
+
+class PlaySearchedSong(APIView):
+    def put(self, request, format=None):
+        song_id = request.data.get('song_id')
+        if not song_id:
+            return Response({'error': 'Song ID not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+
+        if not room:
+            return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        response = play_searched_song(room.host, song_id)
+
+        if 'error' in response:
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(response, status=status.HTTP_200_OK)
+
+
+
+class FollowedArtists(APIView):
+    def get(self, request, format=None):
+        logger = logging.getLogger(__name__)
+
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code).first()
+
+        if not room:
+            logger.error("Room not found")
+            return Response({'error': 'Create or join a room to access this feature! 😎'}, status=status.HTTP_404_NOT_FOUND)
+
+        host = room.host
+        endpoint = "me/following?type=artist"
+
+        response = execute_spotify_api_request(host, endpoint)
+        logger.debug(f"Spotify API response: {response}")
+
+        if 'error' in response:
+            logger.error(f"Error fetching followed artists: {response['error']}")
+            return Response(response, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        artists_info = []
+        for artist in response.get('artists', {}).get('items', []):
+            try:
+                artist_data = {
+                    'name': artist['name'],
+                    'followers': artist['followers']['total'],
+                    'genres': artist['genres'],
+                    'id': artist['id'],
+                    'type': artist['type'],  
+                    'images': artist['images'],
+                    'popularity': artist['popularity'],
+                    'uri': artist['uri'],
+                }
+                artists_info.append(artist_data)
+            except KeyError as e:
+                logger.error(f"Missing key in artist data: {str(e)}")
+
+        return Response(artists_info, status=status.HTTP_200_OK)
+    

@@ -64,20 +64,44 @@ def refresh_spotify_token(session_id):
         session_id, access_token, token_type, expires_in, refresh_token)
 
 
-def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
+# def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False, data=None):
+#     tokens = get_user_tokens(session_id)
+#     headers = {
+#         'Content-Type': 'application/json',
+#         'Authorization': "Bearer " + tokens.access_token
+#     }
+
+#     if post_:
+#         response = post(BASE_URL + endpoint, headers=headers, json=data)
+#     elif put_:
+#         response = put(BASE_URL + endpoint, headers=headers, json=data)
+#     else:
+#         response = get(BASE_URL + endpoint, headers=headers)
+
+#     try:
+#         return response.json()
+#     except ValueError:
+#         return {'Error': 'Issue with request'}
+
+def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False, get_=True, data=None):
     tokens = get_user_tokens(session_id)
-    headers = {'Content-Type': 'application/json',
-               'Authorization': "Bearer " + tokens.access_token}
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + tokens.access_token
+    }
 
     if post_:
-        post(BASE_URL + endpoint, headers=headers)
-    if put_:
-        put(BASE_URL + endpoint, headers=headers)
+        response = post(BASE_URL + endpoint, headers=headers, json=data)
+    elif put_:
+        response = put(BASE_URL + endpoint, headers=headers, json=data)
+    elif get_:
+        response = get(BASE_URL + endpoint, headers=headers)
+    else:
+        response = get(BASE_URL + endpoint, headers=headers)
 
-    response = get(BASE_URL + endpoint, {}, headers=headers)
     try:
         return response.json()
-    except:
+    except ValueError:
         return {'Error': 'Issue with request'}
 
 
@@ -97,4 +121,64 @@ def skip_song(session_id):
 def user_queue(session_id):
     return execute_spotify_api_request(session_id, "me/player/queue", get_=True)
 
+
+def play_queued_song(session_id, song_id):
+    tokens = get_user_tokens(session_id)
+    if not tokens:
+        return {"error": "No tokens found."}
+
+    endpoint_play = "me/player/play"
+
+    playback_info = execute_spotify_api_request(session_id, "me/player/currently-playing")
+    if 'context' in playback_info and playback_info['context']:
+        context_uri = playback_info['context']['uri']
+        current_queue = execute_spotify_api_request(session_id, "me/player/queue").get('queue', [])
+        song_uris = [song['uri'] for song in current_queue]
+
+        if f"spotify:track:{song_id}" in song_uris:
+            offset = {'uri': f"spotify:track:{song_id}"}
+        else:
+            return {"error": "Song not found in the current queue context."}
+    else:
+        return {"error": "No active context found."}
+
+    play_data = {
+        "context_uri": context_uri,
+        "offset": offset
+    }
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + tokens.access_token
+    }
+
+    response = put(BASE_URL + endpoint_play, headers=headers, json=play_data)
+
+    if response.status_code == 204:
+        return {"message": "Song is now playing."}
+    else:
+        return {"error": "Failed to play the song."}
+
+
+def play_searched_song(session_id, song_id):
+    tokens = get_user_tokens(session_id)
+    if not tokens:
+        return {"error": "No tokens found."}
+
+    endpoint_play = "me/player/play"
+    play_data = {
+        "uris": [f"spotify:track:{song_id}"]
+    }
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + tokens.access_token
+    }
+
+    response = put(BASE_URL + endpoint_play, headers=headers, json=play_data)
+
+    if response.status_code == 204:
+        return {"message": "Song is now playing."}
+    else:
+        return {"error": "Failed to play the song."}
 
