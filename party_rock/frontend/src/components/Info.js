@@ -6,6 +6,8 @@ import { faChevronRight, faChevronLeft, faHouse } from '@fortawesome/free-solid-
 import AnimatedText from "./AnimatedText";
 import createPages from "../images/Create-room-example.png"
 import joinPages from "../images/Join-room-example.png"
+import giveCode from "../images/give-code-example.png"
+import updateRoom from "../images/Update-room-example.png"
 
 const pages = {
   JOIN: "pages.join",
@@ -28,7 +30,7 @@ const Info = (props) => {
   });
 
   return (
-    <Container fluid id="gradient" className="flex flex-col items-center justify-center bg-dark p-5 rounded-lg h-87-vh w-100 text-white overflow-y-scroll overflow-x-hidden ">
+    <Container fluid id="gradient" className="flex flex-col items-center justify-center rounded-lg h-100 w-100 text-white overflow-y-scroll overflow-x-hidden ">
       <div className="flex flex-col justify-center items-center text-center mt-10 h-full w-100 mb-10">
         <div className="justify-center items-center mt-17">
           <div className="flex  items-center justify-center text-center mt-17">
@@ -42,12 +44,12 @@ const Info = (props) => {
             transition={false}
             id="noanim-tab-example"
             variant='tabs'
-            className="tabs h-10-vh mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
+            className="tabs bg-transparent h-10-vh mb-17 bg-dark flex-wrap inline-flex flex-row justify-center items-center"
           >
-            <Tab eventKey="joinandcreate" title="Join/Create" className="bg-dark mb-5 tab">
+            <Tab eventKey="joinandcreate" title="Join/Create" className="bg-transparent mb-5 tab">
 
 
-              <div className="justify-center items-center mt-15">
+              <div className="justify-center items-center mt-5">
                 <div className="text-center">
                   <p>{page === pages.JOIN ? joinInfo() : createInfo()}</p>
                 </div>
@@ -62,9 +64,9 @@ const Info = (props) => {
                     className="text-default bg-white"
                   >
                     {page === pages.CREATE ? (
-                      <FontAwesomeIcon icon={faChevronRight} />
+                      <FontAwesomeIcon icon={faChevronRight} beat />
                     ) : (
-                      <FontAwesomeIcon icon={faChevronLeft} />
+                      <FontAwesomeIcon icon={faChevronLeft} beat />
                     )}
                   </Button>
                 </div>
@@ -96,8 +98,36 @@ const Info = (props) => {
             </Tab>
 
 
-            <Tab eventKey="hosting" title="Hosting" className="tab">
+            <Tab eventKey="hosting" title="Hosting" className="overflow-hidden tab">
 
+              <div className="flex flex-col  overflow-y-scroll justify-start items-center mt-5">
+                <div className="text-center">
+                  <p>Send out your room code </p>
+                </div>
+
+                <div className="flex flex-col justify-start items-center mt-3">
+                  <div className=" p-3 w-15rem bg-spotify-green rounded-lg flex items-center justify-center text-center">
+                    <Image
+                      src={giveCode}
+                      alt="code"
+                      width="100%"
+                      height="100%"
+                      priority="true"
+                      className=" rounded-lg h-100 w-100 "
+                    />
+                  </div>
+                  <div className="mt-3 p-3 w-15rem bg-spotify-green rounded-lg flex items-center justify-center text-center">
+                    <Image
+                      src={updateRoom}
+                      alt="code"
+                      width="100%"
+                      height="100%"
+                      priority="true"
+                      className=" rounded-lg h-100 w-100 "
+                    />
+                  </div>
+                </div>
+              </div>
             </Tab>
 
 
